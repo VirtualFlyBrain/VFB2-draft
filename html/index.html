@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+
+  
+  
+
+  
+  
+  
+
+  
+
+  <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.js"></script>
+
+  
+
+  
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+  
+
+  
+    
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/js/vendor/modernizr.js"></script>
+    
+  
+    
+      <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/css/foundation.min.css">
+    
+  
+    
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/js/foundation.min.js"></script>
+    
+  
+
+  <style type="text/css">
+    
+  </style>
+
+  <title>Test Layout1 by rcourt</title>
+
+  
+    
+
+
+
+
+<script type='text/javascript'>//<![CDATA[
+$(window).load(function(){
+$(document).foundation();
+});//]]> 
+
+</script>
+
+  
+</head>
+
+<body>
+  <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+        <li class="name">
+             <h1><a href="#">VFB</a></h1> 
+        </li>
+        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a>
+        </li>
+    </ul>
+    <section class="top-bar-section">
+        <!-- Right Nav Section -->
+        <ul class="right">
+            <li class="has-dropdown mySpecialDropdown-right"> <a href="#">Right Button Dropdown</a> 
+                <ul class="dropdown">
+                    <li><a href="#">First link in dropdown</a>
+                    </li>
+                    <li><a href="#">2nd link in dropdown</a>
+                    </li>
+                    <li><a href="#">3rd link in dropdown</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <!-- Left Nav Section -->
+        <ul class="left">
+            <li class="has-dropdown mySpecialDropdown-left"> <a href="#">Left Button Dropdown</a> 
+                <ul class="dropdown">
+                    <li><a href="#">First link in dropdown</a>
+                    </li>
+                    <li><a href="#" onclick="$('#geppetto-window').hide()">hide</a>
+                    </li>
+                    <li><a href="#" onclick="$('#geppetto-window').show()">show</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+</nav>
+<iframe id="geppetto-window" sandbox="allow-same-origin allow-forms allow-scripts allow-popups"  src="http://vfbsandbox.inf.ed.ac.uk:8180/org.geppetto.frontend/geppetto?load_project_from_url=http://vfbsandbox.inf.ed.ac.uk/do/geppettoJson.json?i=VFB_00000001,VFBd_00100049%26t=VFBt_001%26d="></iframe>
+  
+  <script>
+  // tell the embed parent frame the height of the content
+  if (window.parent && window.parent.parent){
+    window.parent.parent.postMessage(["resultsFrame", {
+      height: document.body.getBoundingClientRect().height,
+      slug: "94c6sm4s"
+    }], "*")
+  }
+</script>
+
+</body>
+
+</html>
+

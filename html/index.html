@@ -1,64 +1,77 @@
 <!DOCTYPE html>
 <html>
-<head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="googlebot" content="noindex, nofollow">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
 
-  
-  
 
-  
-  
-  
+    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.js"></script>
 
-  
 
-  <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.js"></script>
-
-  
-
-  
     <link rel="stylesheet" type="text/css" href="/css/base.css">
- 
-  
-
-  
-    
-      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/js/vendor/modernizr.js"></script>
-    
-  
-    
-      <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/css/foundation.min.css">
-    
-  
-    
-      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/js/foundation.min.js"></script>
-    
-
-  <title>Test Layout1 by rcourt</title>
-
-  
-    
 
 
+    <script type="text/javascript"
+            src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/js/vendor/modernizr.js"></script>
 
 
-<script type='text/javascript'>
-$(window).load(function(){
-$(document).foundation();
-});
+    <link rel="stylesheet" type="text/css"
+          href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/css/foundation.min.css">
 
-</script>
+  <link rel="stylesheet" type="text/css"
+        href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  
+    <script type="text/javascript"
+            src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/js/foundation.min.js"></script>
+
+
+    <title>Test Layout1 by rcourt</title>
+
+
+    <script type='text/javascript'>
+        $(window).load(function () {
+            $(document).foundation();
+        });
+
+    </script>
+
+    <script type='text/javascript'>
+        vfbopen = function (page) {
+            $('#vfb-content-text').load(page);
+            $('#vfb-content-block').show();
+            setTimeout(ga('send', 'pageview', page),10);
+            return false;
+        }
+        vfbsearch = function () {
+            $('#vfb-content-block').hide();
+            if (document.querySelector("Object").isContentEditable) {
+                $('#spotlightBtn').click();
+            }else{
+                $('#vfb-content-text').html('<p>To search click the <i class="fa fa-search"></i> button in the main viewer window</p>');
+                $('#vfb-content-block').show();
+            }
+            return false;
+        }
+        vfbquery = function () {
+            $('#vfb-content-block').hide();
+            if (document.querySelector("Object").isContentEditable) {
+                $('#queryBuilderBtn').click();
+            }else{
+                $('#vfb-content-text').html('<p>To run/build a query click the <i class="fa fa-cogs"></i> button in the main viewer window</p>');
+                $('#vfb-content-block').show();
+            }
+            return false;
+        }
+
+    </script>
+
 </head>
 
 <body>
-  <nav class="top-bar" data-topbar>
+<nav class="top-bar" data-topbar>
     <ul class="title-area">
         <li class="name">
-             <h1><a href="#">VFB</a></h1> 
+            <img class="logo" src="/images/flyBrain.gif" alt="VirtualFlyBrain.org">
         </li>
         <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
         <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a>
@@ -67,43 +80,89 @@ $(document).foundation();
     <section class="top-bar-section">
         <!-- Right Nav Section -->
         <ul class="right">
-            <li class="has-dropdown mySpecialDropdown-right"> <a href="#">Right Button Dropdown</a> 
+            <li class="has-dropdown mySpecialDropdown-right"><a href="#">Stacks</a>
                 <ul class="dropdown">
-                    <li><a href="#">First link in dropdown</a>
-                    </li>
-                    <li><a href="#">2nd link in dropdown</a>
-                    </li>
-                    <li><a href="#">3rd link in dropdown</a>
+                    <li class="has-dropdown"><a href="#">Adult</a>
+                        <ul class="dropdown">
+                            <li><a href="#" onload="">Janelia Brain (JFRC2/2010)</a></li>
+                            <li><a href="#" onload="">Ito Half Brain (tricolour)</a></li>
+                        </ul>
                     </li>
                 </ul>
             </li>
         </ul>
         <!-- Left Nav Section -->
         <ul class="left">
-            <li class="has-dropdown mySpecialDropdown-left"> <a href="#">Left Button Dropdown</a> 
+            <li class="has-dropdown mySpecialDropdown-left">
+                <a href="#"> Site </a>
                 <ul class="dropdown">
-                    <li><a href="#">First link in dropdown</a>
+                    <li><a href="#home" onclick="return vfbopen('home.htm');">Home</a></li>
+                    <li><a href="#overview.htm" onclick="return vfbopen('overview.htm');">Overview</a></li>
+                    <li><a href="/features.htm" onclick="return vfbopen('features.htm');">Features</a></li>
+                    <li><a href="/releases.htm" onclick="return vfbopen('releases.htm');">Releases</a></li>
+                    <li><a href="/usefulLinks.htm" onclick="return vfbopen('usefulLinks.htm');">Useful Links</a></li>
+                    <li><a href="/yourPaper.htm" onclick="return vfbopen('yourPaper.htm');">Tell us about your data</a></li>
+                    <li>
+                        <a href="mailto:&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#064;&#118;&#105;&#114;&#116;&#117;&#097;&#108;&#102;&#108;&#121;&#098;&#114;&#097;&#105;&#110;&#046;&#111;&#114;&#103;">Email
+                            Us</a>
                     </li>
-                    <li><a href="#" onclick="$('#geppetto-window').hide()">hide</a>
-                    </li>
-                    <li><a href="#" onclick="$('#geppetto-window').show()">show</a>
+                    <li><a href="/about_us.htm" onclick="return vfbopen('about_us.htm');">About us</a></li>
+                    <li><a href="http://tinyurl.com/jqdxh28" target="_blank">The Old Site</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown mySpecialDropdown-left"><a href="#">Tools </a>
+                <ul class="dropdown">
+                    <li><a href="#search" onclick="return vfbsearch();">Search</a></li>
+                    <li><a href="#query" onclick="return vfbquery();">Query Builder</a></li>
+                    <li><a href="http://jefferislab.org/si/nblast/" target="_blank">NBLAST</a></li>
+                    <li><a href="/registration.htm" onclick="return vfbopen('registration.htm');">Image Registration</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown mySpecialDropdown-left"><a href="#">Downloads </a>
+                <ul class="dropdown">
+                    <li><a href="/template_files_downloads.htm" onclick="return vfbopen('template_files_downloads.htm');">Template data</a></li>
+                    <li><a href="/image_data_downloads.htm" onclick="return vfbopen('image_data_downloads.htm');">Image data</a></li>
+                    <li><a href="/supp_files_downloads.htm" onclick="return vfbopen('supp_files_downloads.htm');">Support files</a></li>
+                </ul>
+            </li>
+            <li class="has-dropdown mySpecialDropdown-left"><a href="#">Help </a>
+                <ul class="dropdown">
+                    <li><a href="/faq.htm" onclick="return vfbopen('faq.htm');">FAQ</a></li>
+                    <li><a href="/tutorial.htm" onclick="return vfbopen('tutorial.htm');">Tutorial Videos</a></li>
+                    <li><a href="https://groups.google.com/forum/#!forum/vfb-suport" target="_blank">Support
+                        Forum</a></li>
+                    <li><a id="issueLinkM" href="/Feedback.htm"
+                           onclick="ga('send', 'event', 'click', 'issue', theURL);" target="_blank">Report an
+                        issue</a>
                     </li>
                 </ul>
             </li>
         </ul>
     </section>
 </nav>
-<iframe id="geppetto-window" sandbox="allow-same-origin allow-forms allow-scripts allow-popups"  src="http://vfbsandbox.inf.ed.ac.uk:8180/org.geppetto.frontend/geppetto?load_project_from_url=http://vfbsandbox.inf.ed.ac.uk/do/geppettoJson.json?i=VFB_00000001,VFBd_00100049%26t=VFBt_001%26d="></iframe>
-  
-  <script>
-  // tell the embed parent frame the height of the content
-  if (window.parent && window.parent.parent){
-    window.parent.parent.postMessage(["resultsFrame", {
-      height: document.body.getBoundingClientRect().height,
-      slug: "94c6sm4s"
-    }], "*")
-  }
-</script>
+<div id="vfb-content-block" class="callout vfbcontent" style="display: none;">
+    <button class="close-button" aria-label="Close alert" type="button" onclick="$('#vfb-content-block').hide();">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <div id="vfb-content-text" class="vfbcontent"></div>
+</div>
+<div class="vfb-geppetto-frame">
+<object data="http://vfbsandbox.inf.ed.ac.uk:8180/org.geppetto.frontend/geppetto?load_project_from_url=http://vfbsandbox.inf.ed.ac.uk/do/geppettoJson.json?i=VFB_00000001,VFBd_00100049%26t=VFBt_001%26d=">
+    <embed src="http://vfbsandbox.inf.ed.ac.uk:8180/org.geppetto.frontend/geppetto?load_project_from_url=http://vfbsandbox.inf.ed.ac.uk/do/geppettoJson.json?i=VFB_00000001,VFBd_00100049%26t=VFBt_001%26d="> </embed>
+    <iframe id="geppetto-window" sandbox="allow-same-origin allow-forms allow-scripts allow-popups"
+            src="http://vfbsandbox.inf.ed.ac.uk:8180/org.geppetto.frontend/geppetto?load_project_from_url=http://vfbsandbox.inf.ed.ac.uk/do/geppettoJson.json?i=VFB_00000001,VFBd_00100049%26t=VFBt_001%26d="></iframe>
+</object>
+</div>
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-K4THZ7"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K4THZ7');</script>
+<!-- End Google Tag Manager -->
 
 </body>
 

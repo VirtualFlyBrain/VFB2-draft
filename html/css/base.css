@@ -77,7 +77,7 @@
     color: whitesmoke;
 }
 .vfbcontent div a {
-    color: #fc6320;
+    color: #fc3b00;
     text-decoration: none;
     line-height: inherit;
 }
@@ -90,6 +90,9 @@
 }
 .vfbcontent div h1, .vfbcontent div h2, .vfbcontent div h3, .vfbcontent div h4, .vfbcontent div h5, .vfbcontent div h6 {
     color: #fc6320;
+}
+.vfbcontent div small{
+    colour #fc3b00;
 }
 .callout.vfbcontent .close-button {
     background: transparent;

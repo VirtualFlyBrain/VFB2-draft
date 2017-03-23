@@ -12,7 +12,7 @@
 
 
     <script type="text/javascript"
-            src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/js/vendor/modernizr.js"></script>
+            src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/vendor/modernizr.js"></script>
 
 
     <link rel="stylesheet" type="text/css"
@@ -22,8 +22,10 @@
         href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script type="text/javascript"
-            src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/js/foundation.min.js"></script>
+            src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
 
+  <script type="text/javascript"
+          src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation/foundation.orbit.min.js"></script>
 
     <title>Test Layout1 by rcourt</title>
 
@@ -71,9 +73,11 @@
             return false;
         }
         vfbsearch = function () {
-            $('#vfb-content-block').hide();
-            if (document.querySelector("Object").isContentEditable) {
-                $('#spotlightBtn').click();
+            vfbclose();
+            history.pushState({}, name, "/?h=*search");
+            var obj = document.querySelector("object");
+            if (typeof(obj)!="undefined") {
+                obj.contentDocument.querySelector("#spotlightBtn").click();
             }else{
                 $('#vfb-content-text').html('<p>To search click the <i class="fa fa-search"></i> button in the main viewer window</p>');
                 $('#vfb-content-block').show();
@@ -82,8 +86,9 @@
         }
         vfbquery = function () {
             $('#vfb-content-block').hide();
-            if (document.querySelector("Object").isContentEditable) {
-                $('#queryBuilderBtn').click();
+            var obj = document.querySelector("object");
+            if (typeof(obj)!="undefined") {
+                obj.contentDocument.querySelector("#queryBuilderBtn").click();
             }else{
                 $('#vfb-content-text').html('<p>To run/build a query click the <i class="fa fa-cogs"></i> button in the main viewer window</p>');
                 $('#vfb-content-block').show();
@@ -96,7 +101,16 @@
   <script type="text/javascript">
       $( document ).ready(function() {
           if (getUrlParameter('h')) {
-              setTimeout(vfbopen(getUrlParameter('h'),false), 5000);
+              if (getUrlParameter('h').indexOf('*')>-1){
+                  if (getUrlParameter('h')=='*search') {
+                      setTimeout(vfbsearch(), 30000);
+                  }else if (getUrlParameter('h')=='*query'){
+                      setTimeout(vfbquery(), 30000);
+                  }
+
+              }else {
+                  setTimeout(vfbopen(getUrlParameter('h'), false), 5000);
+              }
           }
       });
   </script>
@@ -118,10 +132,17 @@
         <ul class="right">
             <li class="has-dropdown mySpecialDropdown-right"><a href="#">Stacks</a>
                 <ul class="dropdown">
-                    <li class="has-dropdown"><a href="#">Adult</a>
+                    <li class="has-dropdown"><a href="#">Adult Brain</a>
                         <ul class="dropdown">
                             <li><a href="#" onload="">Janelia Brain (JFRC2/2010)</a></li>
                             <li><a href="#" onload="">Ito Half Brain (tricolour)</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-dropdown mySpecialDropdown-left"><a href="#">Downloads </a>
+                        <ul class="dropdown">
+                            <li><a href="#template_files_downloads" onclick="return vfbopen('template_files_downloads');">Template data</a></li>
+                            <li><a href="#image_data_downloads" onclick="return vfbopen('image_data_downloads');">Image data</a></li>
+                            <li><a href="#supp_files_downloads" onclick="return vfbopen('supp_files_downloads');">Support files</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -154,13 +175,6 @@
                     <li><a href="#registration" onclick="return vfbopen('registration');">Image Registration</a></li>
                 </ul>
             </li>
-            <li class="has-dropdown mySpecialDropdown-left"><a href="#">Downloads </a>
-                <ul class="dropdown">
-                    <li><a href="#template_files_downloads" onclick="return vfbopen('template_files_downloads');">Template data</a></li>
-                    <li><a href="#image_data_downloads" onclick="return vfbopen('image_data_downloads');">Image data</a></li>
-                    <li><a href="#supp_files_downloads" onclick="return vfbopen('supp_files_downloads');">Support files</a></li>
-                </ul>
-            </li>
             <li class="has-dropdown mySpecialDropdown-left"><a href="#">Help </a>
                 <ul class="dropdown">
                     <li><a href="#faq" onclick="return vfbopen('faq');">FAQ</a></li>
@@ -183,10 +197,10 @@
     <div id="vfb-content-text" class="vfbcontent"></div>
 </div>
 <div class="vfb-geppetto-frame">
-<object data="http://vfbsandbox.inf.ed.ac.uk:8180/org.geppetto.frontend/geppetto?load_project_from_url=http://vfbsandbox.inf.ed.ac.uk/do/geppettoJson.json?i=VFB_00000001,VFBd_00100049%26t=VFBt_001%26d=">
-    <embed src="http://vfbsandbox.inf.ed.ac.uk:8180/org.geppetto.frontend/geppetto?load_project_from_url=http://vfbsandbox.inf.ed.ac.uk/do/geppettoJson.json?i=VFB_00000001,VFBd_00100049%26t=VFBt_001%26d="> </embed>
-    <iframe id="geppetto-window" sandbox="allow-same-origin allow-forms allow-scripts allow-popups"
-            src="http://vfbsandbox.inf.ed.ac.uk:8180/org.geppetto.frontend/geppetto?load_project_from_url=http://vfbsandbox.inf.ed.ac.uk/do/geppettoJson.json?i=VFB_00000001,VFBd_00100049%26t=VFBt_001%26d="></iframe>
+<object id="geppetto-window-object" data="/org.geppetto.frontend/geppetto?load_project_from_url=http://vfbsandbox.inf.ed.ac.uk/do/geppettoJson.json?t=VFBt_001">
+    <embed id="geppetto-window-embed" src="/org.geppetto.frontend/geppetto?load_project_from_url=http://vfbsandbox.inf.ed.ac.uk/do/geppettoJson.json?t=VFBt_001"> </embed>
+    <iframe id="geppetto-window-frame" sandbox="allow-same-origin allow-forms allow-scripts allow-popups"
+            src="/org.geppetto.frontend/geppetto?load_project_from_url=http://vfbsandbox.inf.ed.ac.uk/do/geppettoJson.json?t=VFBt_001"></iframe>
 </object>
 </div>
 

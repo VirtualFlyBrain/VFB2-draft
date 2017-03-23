@@ -27,9 +27,7 @@
 	  </li>	   
 	</ul>
 <script>
-	window.onload{
-	    if (window.top.location.pathname != '/'){
-            window.top.location.pathname = '/?h=help';
-		}
-	}
+    if (window.top.location.pathname != '/'){
+        window.location = '/?h=help';
+    }
 </script>

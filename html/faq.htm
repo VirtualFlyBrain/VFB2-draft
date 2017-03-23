@@ -1,36 +1,10 @@
-<jsp:include page="/jsp/includes/homeHead.jsp">
-	<jsp:param name="navpath"
-		value="The VFB Site@/site/vfb_site/home.htm|FAQ" />
-	<jsp:param name="css" value="/css/vfb/utils/table.css" />
-	<jsp:param name="title" value="FAQ" />
-</jsp:include>
+<h2>FAQ</h2>
+<p>If you can't find an answer to your question in the help sections, you can use the <a href="https://groups.google.com/forum/embed/?place=forum/vfb_support#!forum/vfb_support" target="_blank">VFB_support</a> or the <a href="https://groups.google.com/forum/embed/?place=forum/vfb_community#!forum/vfb_community" target="_blank">VFB_community</a> google groups. Searching the
+    archive is available to all.</p>
+<p>You can also ask us questions directly via <a href="https://twitter.com/virtualflybrain" target="_blank">twitter</a> or <a href="mailto:&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#064;&#118;&#105;&#114;&#116;&#117;&#097;&#108;&#102;&#108;&#121;&#098;&#114;&#097;&#105;&#110;&#046;&#111;&#114;&#103;" target="_blank">&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#064;&#118;&#105;&#114;&#116;&#117;&#097;&#108;&#102;&#108;&#121;&#098;&#114;&#097;&#105;&#110;&#046;&#111;&#114;&#103;</a>.</p>
 
-<div class="row row-centered">
-
-	<div class="col-md-9 col-centered">
-
-	<h2>FAQ</h2>
-	<p>If you can't find an answer to your question, you can use the VFB_community google group shown below. Searching the archive is available to all. 
-	To post a question you will first need to request to join the group.</p>
-		<iframe id="forum_embed"
- src="javascript:void(0)"
- scrolling="no"
- frameborder="0"
- width="900"
- height="700">
-</iframe>
-
-<script type="text/javascript">
- document.getElementById("forum_embed").src =
-  "https://groups.google.com/forum/embed/?place=forum/VFB_community" +
-  "&showsearch=true&showpopout=true&hideforumtitle=true&h1&fragments=true&parenturl=" +
-  encodeURIComponent(window.location.href);
+<script>
+    if (window.top.location.pathname != '/'){
+        window.location = '/?h=faq';
+    }
 </script>
-		
-	</div>
-<!-- center_wide -->
-
-</div>
-
-
-<jsp:include page="/jsp/includes/homeFoot.jsp" />

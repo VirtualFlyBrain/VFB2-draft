@@ -54,6 +54,9 @@
     padding: 1%;
     position: absolute;
     border-style: double;
+    border-radius: 20px;
+    right: 0px;
+    left: 0px;
 }
 .vfbcontent div {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -97,4 +100,15 @@
     font-size: xx-large;
     color: #fc6320;
     font-weight: bold;
+}
+.top-bar-section .dropdown li {
+    border-right-style: inset;
+    border-top-style: inset;
+    border-right-width: 0.5px;
+    border-top-width: 0.5px;
+    border-right-color: grey;
+    border-top-color: grey;
+}
+body {
+    background-color: rgb(81, 83, 89) !important;
 }

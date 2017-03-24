@@ -1,149 +1,187 @@
 <!DOCTYPE html>
 <html>
-  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="googlebot" content="noindex, nofollow">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex, nofollow">
 
-  <!-- Google Tag Manager -->
-  <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-K4THZ7"
-                    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-      '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-K4THZ7');</script>
-  <!-- End Google Tag Manager -->
+<!-- Google Tag Manager -->
+<noscript>
+    <iframe src="//www.googletagmanager.com/ns.html?id=GTM-K4THZ7"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+<script>(function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({
+        'gtm.start': new Date().getTime(), event: 'gtm.js'
+    });
+    var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    j.src =
+        '//www.googletagmanager.com/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-K4THZ7');</script>
+<!-- End Google Tag Manager -->
 
-    <script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-2.1.0.js"></script>
 
-
-    <link rel="stylesheet" type="text/css" href="/css/base.css">
-
-
-    <script type="text/javascript"
-            src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/vendor/modernizr.js"></script>
-
-
-    <link rel="stylesheet" type="text/css"
-          href="//cdnjs.cloudflare.com/ajax/libs/foundation/5.2.3/css/foundation.min.css">
-
-  <link rel="stylesheet" type="text/css"
-        href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <script type="text/javascript"
-            src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation.min.js"></script>
-
-  <script type="text/javascript"
-          src="//cdnjs.cloudflare.com/ajax/libs/foundation/5.5.3/js/foundation/foundation.orbit.min.js"></script>
-
-  <script type="text/javascript"
-          src="//cdnjs.cloudflare.com/ajax/libs/motion-ui/1.2.2/motion-ui.min.js"></script>
-
-  <link rel="stylesheet" type="text/css"
-        href="//cdnjs.cloudflare.com/ajax/libs/motion-ui/1.2.2/motion-ui.min.css">
-
-    <title>Test Layout1 by rcourt</title>
+<link rel="stylesheet" type="text/css" href="/css/base.css">
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/uikit/2.27.2/css/components/slideshow.min.css">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/uikit/2.27.2/css/uikit.min.css"/>
+<script src="//cdnjs.cloudflare.com/ajax/libs/uikit/2.27.2/js/uikit.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/uikit/2.27.2/js/components/slideshow.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/uikit/2.27.2/js/components/slideshow-fx.min.js"></script>
 
 
-    <script type='text/javascript'>
-        $(window).load(function () {
-            $(document).foundation();
-        });
+<link rel="stylesheet" type="text/css"
+      href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    </script>
+<title>VFB - Virtual Fly Brain, a hub for Drosophila melanogastor neuroscience research</title>
 
-    <script type='text/javascript'>
 
-        var getUrlParameter = function getUrlParameter(sParam) {
-            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-                sURLVariables = sPageURL.split('&'),
-                sParameterName,
-                i;
+<script type="text/javascript">
 
-            for (i = 0; i < sURLVariables.length; i++) {
-                sParameterName = sURLVariables[i].split('=');
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
 
-                if (sParameterName[0] === sParam) {
-                    return sParameterName[1] === undefined ? true : sParameterName[1];
-                }
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : sParameterName[1];
             }
-        };
-        vfbclose = function () {
-            history.pushState({}, name, "/");
-            $('#vfb-content-block').hide();
-            return false;
         }
-        vfbopen = function (page, update) {
-            if (typeof update === 'undefined') { update = true; }
-            if (page.indexOf('.htm')<0){
-                if (update) {history.pushState({}, page, "/?h="+page);}
-                page = page + '.htm';
-            }else{
-                var name = page.replace('.htm','');
-                if (update) {history.pushState({}, name, "/?h="+name);}
+    };
+    vfbclose = function () {
+        UIkit.offcanvas.hide();
+        history.pushState({}, name, "/");
+        $('#vfb-content-block').hide();
+        return false;
+    }
+    vfbopen = function (page, update) {
+        UIkit.offcanvas.hide();
+        if (typeof update === 'undefined') {
+            update = true;
+        }
+        if (page.indexOf('.htm') < 0) {
+            if (update) {
+                history.pushState({}, page, "/?h=" + page);
             }
-            $('#vfb-content-text').load(page);
+            page = page + '.htm';
+        } else {
+            var name = page.replace('.htm', '');
+            if (update) {
+                history.pushState({}, name, "/?h=" + name);
+            }
+        }
+        $('#vfb-content-text').load(page);
+        $('#vfb-content-block').show();
+        setTimeout(ga('send', 'pageview', page), 10);
+        return false;
+    }
+    vfbsearch = function () {
+        vfbclose();
+        history.pushState({}, name, "/?h=*search");
+        var obj = document.querySelector("object");
+        if (typeof(obj) != "undefined") {
+            obj.contentDocument.querySelector("#spotlightBtn").click();
+        } else {
+            $('#vfb-content-text').html('<p>To search click the <i class="fa fa-search"></i> button in the main viewer window</p>');
             $('#vfb-content-block').show();
-            setTimeout(ga('send', 'pageview', page),10);
-            return false;
         }
-        vfbsearch = function () {
-            vfbclose();
-            history.pushState({}, name, "/?h=*search");
-            var obj = document.querySelector("object");
-            if (typeof(obj)!="undefined") {
-                obj.contentDocument.querySelector("#spotlightBtn").click();
-            }else{
-                $('#vfb-content-text').html('<p>To search click the <i class="fa fa-search"></i> button in the main viewer window</p>');
-                $('#vfb-content-block').show();
+        return false;
+    }
+    vfbquery = function () {
+        vfbclose();
+        var obj = document.querySelector("object");
+        if (typeof(obj) != "undefined") {
+            obj.contentDocument.querySelector("#queryBuilderBtn").click();
+        } else {
+            $('#vfb-content-text').html('<p>To run/build a query click the <i class="fa fa-cogs"></i> button in the main viewer window</p>');
+            $('#vfb-content-block').show();
+        }
+        return false;
+    }
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (getUrlParameter('h')) {
+            if (getUrlParameter('h').indexOf('*') > -1) {
+                if (getUrlParameter('h') == '*search') {
+                    setTimeout(vfbsearch, 30000);
+                } else if (getUrlParameter('h') == '*query') {
+                    setTimeout(vfbquery, 30000);
+                }
+
+            } else {
+                setTimeout("vfbopen(getUrlParameter('h'), false);", 5000);
             }
-            return false;
         }
-        vfbquery = function () {
-            $('#vfb-content-block').hide();
-            var obj = document.querySelector("object");
-            if (typeof(obj)!="undefined") {
-                obj.contentDocument.querySelector("#queryBuilderBtn").click();
-            }else{
-                $('#vfb-content-text').html('<p>To run/build a query click the <i class="fa fa-cogs"></i> button in the main viewer window</p>');
-                $('#vfb-content-block').show();
-            }
-            return false;
-        }
-
-    </script>
-
-  <script type="text/javascript">
-      $( document ).ready(function() {
-          if (getUrlParameter('h')) {
-              if (getUrlParameter('h').indexOf('*')>-1){
-                  if (getUrlParameter('h')=='*search') {
-                      setTimeout(vfbsearch(), 30000);
-                  }else if (getUrlParameter('h')=='*query'){
-                      setTimeout(vfbquery(), 30000);
-                  }
-
-              }else {
-                  setTimeout(vfbopen(getUrlParameter('h'), false), 5000);
-              }
-          }
-      });
-  </script>
+    });
+</script>
 
 </head>
 
 <body>
+<section id="vfb-menu">
+
+        <nav class="uk-navbar uk-navbar-attached">
+            <ul class="uk-navbar-nav">
+                <li>
+                    <a href="" onclick="return vfbopen('home');" class="uk-navbar-brand">
+                        <img class="logo" src="/images/orangeVFBanimLogo.gif" alt="VirtualFlyBrain.org">
+                    </a>
+                </li>
+            </ul>
+
+
+            <div class="uk-navbar-flip">
+                <ul class="uk-navbar-nav">
+                    <li>
+                        <a class="uk-navbar-toggle uk-hidden-small" href="#offcanvas-right" data-uk-offcanvas="mode:'slide'"></a>
+                        <!-- Modes: 'push', 'slide', 'reveal', 'none'; https://getuikit.com/docs/offcanvas.html -->
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="uk-navbar-content uk-navbar-center">
+                <a href="" onclick="return vfbopen('home');" class="">
+                    <b>Virtual Fly Brain</b><small class="uk-visible-large"> - a hub for <i>Drosophila melanogastor</i> neuroscience research</small>
+                </a>
+            </div>
+
+        </nav>
+
+        <div id="offcanvas-right" class="uk-offcanvas">
+            <div class="uk-offcanvas-bar uk-offcanvas-bar-flip">
+                <div class="uk-panel uk-margin">
+                    <ul class="uk-list uk-list-space">
+                        <li onclick="vfbopen('home')"><i class="uk-icon-justify uk-icon-large uk-icon-home"></i> Home</li>
+                        <li onclick="vfbsearch()"><i class="uk-icon-justify uk-icon-large uk-icon-search"></i> Search</li>
+                        <li onclick="vfbquery()"><i class="uk-icon-justify uk-icon-large uk-icon-cogs"></i> Query</li>
+                        <li><i class="uk-icon-justify uk-icon-large uk-icon-user"></i> Some text</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+</section>
+<!--
 <nav class="top-bar" data-topbar>
     <ul class="title-area">
         <li class="name">
             <img class="logo" src="/images/orangeVFBanimLogo.gif" alt="VirtualFlyBrain.org">
         </li>
-        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
         <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a>
         </li>
     </ul>
     <section class="top-bar-section">
-        <!-- Right Nav Section -->
         <ul class="right">
             <li class="has-dropdown mySpecialDropdown-right"><a href="#">Stacks</a>
                 <ul class="dropdown">
@@ -155,15 +193,17 @@
                     </li>
                     <li class="has-dropdown mySpecialDropdown-left"><a href="#">Downloads </a>
                         <ul class="dropdown">
-                            <li><a href="#template_files_downloads" onclick="return vfbopen('template_files_downloads');">Template data</a></li>
-                            <li><a href="#image_data_downloads" onclick="return vfbopen('image_data_downloads');">Image data</a></li>
-                            <li><a href="#supp_files_downloads" onclick="return vfbopen('supp_files_downloads');">Support files</a></li>
+                            <li><a href="#template_files_downloads"
+                                   onclick="return vfbopen('template_files_downloads');">Template data</a></li>
+                            <li><a href="#image_data_downloads" onclick="return vfbopen('image_data_downloads');">Image
+                                data</a></li>
+                            <li><a href="#supp_files_downloads" onclick="return vfbopen('supp_files_downloads');">Support
+                                files</a></li>
                         </ul>
                     </li>
                 </ul>
             </li>
         </ul>
-        <!-- Left Nav Section -->
         <ul class="left">
             <li class="has-dropdown mySpecialDropdown-left">
                 <a href="#"> Site </a>
@@ -205,20 +245,21 @@
         </ul>
     </section>
 </nav>
-<div id="vfb-content-block" class="callout vfbcontent" style="display: none;">
-    <button class="close-button" aria-label="Close alert" type="button" onclick="vfbclose();">
-        <span aria-hidden="true">&times;</span>
-    </button>
+-->
+
+<div id="vfb-content-block" class="callout vfbcontent" style="display: none;" onblur="vfbclose();">
+       <i onclick="vfbclose();" class="uk-icon-justify uk-icon-large uk-icon-close" style="position: absolute; right:0px;top:0px;color:#fc6320;"></i>
     <div id="vfb-content-text" class="vfbcontent"></div>
 </div>
 <div class="vfb-geppetto-frame">
-<object id="geppetto-window-object" data="/org.geppetto.frontend/geppetto?load_project_from_url=http://vfbsandbox.inf.ed.ac.uk/do/geppettoJson.json?t=VFBt_001">
-    <embed id="geppetto-window-embed" src="/org.geppetto.frontend/geppetto?load_project_from_url=http://vfbsandbox.inf.ed.ac.uk/do/geppettoJson.json?t=VFBt_001"> </embed>
-    <iframe id="geppetto-window-frame" sandbox="allow-same-origin allow-forms allow-scripts allow-popups"
-            src="/org.geppetto.frontend/geppetto?load_project_from_url=http://vfbsandbox.inf.ed.ac.uk/do/geppettoJson.json?t=VFBt_001"></iframe>
-</object>
+    <object id="geppetto-window-object"
+            data="/org.geppetto.frontend/geppetto?load_project_from_url=http://vfbsandbox.inf.ed.ac.uk/do/geppettoJson.json?t=VFBt_001">
+        <embed id="geppetto-window-embed"
+               src="/org.geppetto.frontend/geppetto?load_project_from_url=http://vfbsandbox.inf.ed.ac.uk/do/geppettoJson.json?t=VFBt_001"></embed>
+        <iframe id="geppetto-window-frame" sandbox="allow-same-origin allow-forms allow-scripts allow-popups"
+                src="/org.geppetto.frontend/geppetto?load_project_from_url=http://vfbsandbox.inf.ed.ac.uk/do/geppettoJson.json?t=VFBt_001"></iframe>
+    </object>
 </div>
-
 
 
 </body>

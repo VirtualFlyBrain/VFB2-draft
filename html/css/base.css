@@ -1,48 +1,12 @@
-.vfb-geppetto-frame {
+.vfb-geppetto-frame, .vfb-geppetto-frame iframe, .vfb-geppetto-frame object, .vfb-geppetto-frame embed {
     width: 100%;
-    height: 100%;
+    height: 100vh;
 }
-.vfb-geppetto-frame iframe {
-  width: 100%;
-  height: 100%;
-}
-.vfb-geppetto-frame object {
-    width: 100%;
-    height: 100%;
-}
-.vfb-geppetto-frame embed {
-    width: 100%;
-    height: 100%;
-}
-.top-bar a {
+.uk-navbar-center a {
   color: #fc6320 !important;
 }
-@media only screen and (min-width: 64em) {
-    [class*="mySpecialDropdown-"] {
-        position: static !important;
-    }
-    [class*="mySpecialDropdown-"] > a:after {
-        position: relative !important;
-        display: inline-block !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        top: 4px !important;
-        left: 4px !important;
-    }
-    [class*="mySpecialDropdown-"] > ul {
-        width: 100% !important;
-        background: none repeat scroll 0% 0% #333 !important;
-    }
-    [class*="mySpecialDropdown-"] > ul > li {
-        display: inline-block !important;
-        width: auto !important;
-    }
-    [class*="mySpecialDropdown-"] > ul > li:first-child {
-        display: none !important;
-    }
-    .mySpecialDropdown-right > ul > li {
-        float: right !important;
-    }
+.uk-navbar {
+    background: #141a1e !important;
 }
 .logo {
     max-height: 50%;
@@ -117,4 +81,7 @@ body {
 }
 .vfbcontent .orbit-container ul li img{
     width: 100%;
+}
+.uk-navbar-nav>li>a {
+    color: #fc6320 !important;
 }

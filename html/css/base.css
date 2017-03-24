@@ -115,3 +115,6 @@
 body {
     background-color: rgb(81, 83, 89) !important;
 }
+.vfbcontent .orbit-container ul li img{
+    width: 100%;
+}

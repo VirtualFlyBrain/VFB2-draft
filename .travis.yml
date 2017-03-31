@@ -1,0 +1,9 @@
+services:
+  - docker
+  
+script:
+  - docker build -t test-image:test .
+  - docker run -d --name test -p 80:80 test-image:test
+  - sleep 2m
+  - docker logs test
+  - curl -sSf http://localhost:80/index.html

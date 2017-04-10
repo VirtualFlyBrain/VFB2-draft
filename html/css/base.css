@@ -85,3 +85,7 @@ body {
 .uk-navbar-nav>li>a {
     color: #fc6320 !important;
 }
+.socialmedia {
+    cursor: pointer;
+    height: 20px;
+}

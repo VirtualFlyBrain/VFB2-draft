@@ -90,3 +90,7 @@ body {
     max-height: 15px;
     float: right;    
 }
+.uk-navbar-brand div {
+    top: 0px;
+    position: absolute;
+}

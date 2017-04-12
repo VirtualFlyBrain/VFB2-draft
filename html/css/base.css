@@ -95,3 +95,6 @@ body {
     font-size: 40px;
     position: absolute;
 }
+.uk-navbar-brand {
+    width: 70px;
+}

@@ -33,6 +33,7 @@
     border-radius: 20px;
     right: 0px;
     left: 0px;
+    z-index: 2000;
 }
 .vfbcontent div {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;

@@ -20,7 +20,12 @@
     width: 50vh;
     height: 50vh;
     margin-top: 25vh;
-    margin-left: 25vh;
+    margin-left: 25vw;
+}
+.vfb-splash-screen h1, h2, h3, h4, h5, h6{
+    color: #fc6320;
+    padding-left: 25vw;
+    padding-top: 3vh;
 }
 .uk-navbar-center a {
   color: #fc6320 !important;

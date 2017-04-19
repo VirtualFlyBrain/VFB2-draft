@@ -15,17 +15,20 @@
     z-index: 100;
 }
 .vfb-splash-screen .gpt-fly.fa-spin{
-    font-size: 50vh;
+    font-size: 20vh;
     color: #fc6320;
-    width: 50vh;
-    height: 50vh;
-    margin-top: 25vh;
-    margin-left: 25vw;
+    width: 20vh;
+    height: 20vh;
+    margin-top: 8vh;
+}
+.vfb-splash-screen h1{
+    padding-top:15vh;  
+}
+.vfb-splash-screen h2{
+    padding-top:8vh;
 }
 .vfb-splash-screen h1, h2, h3, h4, h5, h6{
     color: #fc6320;
-    padding-left: 25vw;
-    padding-top: 3vh;
 }
 .uk-navbar-center a {
   color: #fc6320 !important;

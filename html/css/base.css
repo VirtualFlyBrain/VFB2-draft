@@ -28,7 +28,7 @@
     padding-top:8vh;
 }
 .vfb-splash-screen h1, h2, h3, h4, h5, h6{
-    color: #fc6320;
+    color: #fc6320 !important;
 }
 .uk-navbar-center a {
   color: #fc6320 !important;

@@ -585,7 +585,7 @@
       name="Images of neurons with some part here (clustered)"
       description="Images of neurons with some part in the $NAME (clustered)"
       returnType="//@libraries.3/@types.2"
-      queryChain="//@dataSources.1/@queries.10 //@dataSources.1/@queries.7 //@dataSources.0/@queries.3">
+      queryChain="//@dataSources.1/@queries.10 //@dataSources.1/@queries.7 //@dataSources.0/@queries.1">
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
   </queries>

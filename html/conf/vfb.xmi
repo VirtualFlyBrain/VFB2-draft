@@ -581,20 +581,11 @@
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
   </queries>
   <queries xsi:type="gep_2:CompoundRefQuery"
-      id="ImagesNeuronsInd"
-      name="Images of neurons with some part here (from Individual)"
-      description="Images of neurons with some part in the $NAME"
-      returnType="//@libraries.3/@types.2"
-      queryChain="//@dataSources.0/@queries.6 //@dataSources.1/@queries.11 //@dataSources.1/@queries.7 //@dataSources.0/@queries.1">
-    <matchingCriteria
-        type="//@libraries.3/@types.5 //@libraries.3/@types.0"/>
-  </queries>
-  <queries xsi:type="gep_2:CompoundRefQuery"
       id="ImagesNeuronsClustered"
       name="Images of neurons with some part here (clustered)"
       description="Images of neurons with some part in the $NAME (clustered)"
       returnType="//@libraries.3/@types.2"
-      queryChain="//@dataSources.1/@queries.10 //@dataSources.1/@queries.7 //@dataSources.0/@queries.3">
+      queryChain="//@dataSources.1/@queries.10 //@dataSources.1/@queries.7 //@dataSources.0/@queries.1">
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
   </queries>

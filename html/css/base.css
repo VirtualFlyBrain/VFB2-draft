@@ -2,11 +2,39 @@
     width: 100%;
     height: 100vh;
 }
+.vfb-geppetto-frame{
+    position: relative;
+    top: 0px;
+}
+.vfb-splash-screen{
+    position: absolute;
+    top: 0px;
+    background: rgba(100, 100, 100, 0.80);
+    height: 100vh;
+    width: 100vw;
+    z-index: 100;
+}
+.vfb-splash-screen .gpt-fly.fa-spin{
+    font-size: 20vh;
+    color: #fc6320;
+    width: 20vh;
+    height: 20vh;
+    margin-top: 8vh;
+}
+.vfb-splash-screen h1{
+    padding-top:15vh;  
+}
+.vfb-splash-screen h2{
+    padding-top:8vh;
+}
+.vfb-splash-screen h1, h2, h3, h4, h5, h6{
+    color: #fc6320 !important;
+}
 .uk-navbar-center a {
   color: #fc6320 !important;
 }
 .uk-navbar {
-    background: #141a1e !important;
+    background: #191f23 !important;
 }
 .logo {
     max-height: 50%;
@@ -21,6 +49,7 @@
     border-radius: 20px;
     right: 0px;
     left: 0px;
+    z-index: 2000;
 }
 .vfbcontent div {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -56,7 +85,7 @@
     color: #fc6320;
 }
 .vfbcontent div small{
-    colour #fc3b00;
+    color #fc3b00;
 }
 .callout.vfbcontent .close-button {
     background: transparent;

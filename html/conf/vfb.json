@@ -5,7 +5,7 @@
     "experiments": [
         {
             "id": 1,
-            "name": "Only morphologies, no simulation",
+            "name": "Virtual Fly Brain",
             "status": "COMPLETED",
             "script": "http://v2a.virtualflybrain.org/conf/vfb.js",
             "description": "Virtual Fly Brain",

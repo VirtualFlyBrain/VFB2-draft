@@ -7,7 +7,7 @@
             "id": 1,
             "name": "Virtual Fly Brain",
             "status": "COMPLETED",
-            "script": "https://v2.virtualflybrain.org/conf/vfb.js",
+            "script": "http://v2.virtualflybrain.org/conf/vfb.js",
             "description": "Virtual Fly Brain",
             "lastModified": "1492026520709",
             "aspectConfigurations": []
@@ -15,7 +15,7 @@
     ],
     "geppettoModel": {
         "id": 9,
-        "url": "https://v2.virtualflybrain.org/conf/vfb.xmi",
+        "url": "http://v2.virtualflybrain.org/conf/vfb.xmi",
         "type": "GEPPETTO_PROJECT"
     }
 }

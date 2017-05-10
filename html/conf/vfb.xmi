@@ -260,7 +260,7 @@
           xsi:type="gep_2:SimpleQuery"
           name="Get term info"
           description="Fetches essential details."
-          query="MATCH (n {short_form:'$ID'}) OPTIONAL MATCH (n)-[r]-(o) OPTIONAL MATCH (n:Individual)&lt;-[r:Related {label:'depicts'}]-(o:Individual)-[i:in_register_with]->(tc:Individual)-[:Related {label:'depicts'}]->(t:Individual) OPTIONAL MATCH (o:Individual)&lt;-[:Related {label:'depicts'}]-(tc:Individual)-[i:in_register_with]->(:Individual)-[:Related {label:'depicts'}]->(t:Individual) WITH n, r, o, t, tc, i, startnode(r) as s WITH n, r, o, t, tc, i, CASE when s.iri = n.iri then &quot;node&quot; else &quot;to&quot; end as starts RETURN labels(n) as labels, n as node, COLLECT({edge:r,types:type(r),start:starts,to:o,labels:labels(o),tempIm:i,temp:t,tempCh:tc}) as links LIMIT 1"
+          query="MATCH (n {short_form:'$ID'}) OPTIONAL MATCH (n)-[r]-(o) OPTIONAL MATCH (n:Individual)&lt;-[r:Related {label:'depicts'}]-(o:Individual)-[i:in_register_with]->(tc:Individual)-[:Related {label:'depicts'}]->(t:Individual) OPTIONAL MATCH (o:Individual)&lt;-[:Related {label:'depicts'}]-(tc:Individual)-[i:in_register_with]->(:Individual)-[:Related {label:'depicts'}]->(t:Individual) WITH n, r, o, t, tc, i, startnode(r) as s WITH n, r, o, t, tc, i, CASE when s.iri = n.iri then 'node' else 'to' end as starts RETURN labels(n) as labels, n as node, COLLECT({edge:r,types:type(r),start:starts,to:o,labels:labels(o),tempIm:i,temp:t,tempCh:tc}) as links LIMIT 1"
           countQuery="MATCH (n { short_form: '$ID' } ) RETURN count(n) as count"/>
       <queryChain
           xsi:type="gep_2:ProcessQuery"

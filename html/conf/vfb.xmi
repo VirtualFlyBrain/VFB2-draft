@@ -135,7 +135,7 @@
           name="Get meta from Neo4j"
           description="Get images for individual list"
           runForCount="false"
-          query="MATCH (i:Individual)&lt;-[:Related { label : 'depicts' } ]-(j:Individual)-[k:in_register_with]->(m:Individual) WHERE i.short_form IN $ARRAY_ID_RESULTS RETURN i.short_form as id, i.label as name, i.description[0] as def, replace(k.iri,'http:','https:') + '/thumbnailT.png' AS file"
+          query="MATCH (i:Individual) WHERE i.short_form IN $ARRAY_ID_RESULTS OPTIONAL MATCH (i)&lt;-[:Related {label:'depicts'}]-(:Individual)-[k1:in_register_with]->(:Individual) WHERE i.short_form IN ['VFB_00016999'] OPTIONAL MATCH (i:Cluster)&lt;-[:Related {label:'exemplar_of'}]-(e:Individual) with i, coalesce(replace(k1.iri,'http:','https:') + '/thumbnailT.png','http://flybrain.mrc-lmb.cam.ac.uk/vfb/fc/clusterv/3/' + e.label + '/snapshot.png') as iri, coalesce(i.description[0], CASE WHEN e.short_form IS NOT null THEN 'A Cluster of morphologically similar neurons using affinity propogation clustering based on NBLAST neuron similarity scores (Costa et al., 2016).' ELSE '' END) as cd RETURN i.short_form as id, i.label as name, cd as def, iri AS file"
           countQuery="MATCH(i:Individual) WHERE i.short_form IN $ARRAY_ID_RESULTS RETURN count(i) as count"/>
       <queryChain
           xsi:type="gep_2:ProcessQuery"

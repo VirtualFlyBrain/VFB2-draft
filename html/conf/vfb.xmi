@@ -84,6 +84,9 @@
     <types xsi:type="gep_1:SimpleType"
         id="hasExamples"
         name="Has Examples"/>
+    <types xsi:type="gep_1:SimpleType"
+        id="Cluster"
+        name="Cluster"/>
   </libraries>
   <libraries
       id="vfbLibrary"
@@ -500,5 +503,14 @@
       queryChain="//@dataSources.1/@queries.6 //@dataSources.1/@queries.0 //@dataSources.0/@queries.0">
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
+  </queries>
+  <queries xsi:type="gep_2:CompoundRefQuery"
+      id="ListClustMembers"
+      name="Cluster Members"
+      description="Neuron in $NAME"
+      returnType="//@libraries.3/@types.2"
+      queryChain="//@dataSources.0/@queries.2">
+    <matchingCriteria
+        type="//@libraries.3/@types.0 //@libraries.3/@types.22"/>
   </queries>
 </gep:GeppettoModel>

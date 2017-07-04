@@ -83,7 +83,7 @@
         }
         $('#vfb-content-text').load(page);
         $('#vfb-content-block').show();
-        setTimeout(ga('send', 'pageview', page), 10);
+        if (typeof ga == "function"){ setTimeout(ga('send', 'pageview', page), 10);};
         return false;
     }
     vfbsearch = function () {
@@ -112,7 +112,7 @@
     
     setTimeout("if ($('.vfb-splash-screen').is(':visible') && $('#errormodal').is(':visible') == true){$('#vfb-splash-loading-text').text('Error: ' + $('#errormodal-text').text())};", 10000);
     setTimeout("if ($('.vfb-splash-screen').is(':visible')){location.reload();};", 60000);
-    if (window.location.href.indexOf('i=')<0){ vfbopen('home');};
+    setTimeout("if (window.location.href.indexOf('i=')<0){ vfbopen('home');};", 5000);
 
 </script>
 

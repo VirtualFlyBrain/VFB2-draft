@@ -67,6 +67,9 @@
         if (typeof update === 'undefined') {
             update = true;
         }
+        if (typeof page === 'undefined') {
+            page = 'home';
+        }
         if (page.indexOf('.htm') < 0) {
             if (update) {
                 history.pushState({}, page, "/?h=" + page);

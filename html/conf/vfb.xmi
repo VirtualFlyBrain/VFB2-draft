@@ -399,7 +399,7 @@
         name="innervates $NAME"
         description="innervates $NAME"
         returnType="//@libraries.3/@types.1"
-        query="type=subeq&amp;query=&lt;http://purl.obolibrary.org/obo/RO_0002101%3E%20some%20&lt;http://purl.obolibrary.org/obo/$ID%3E&amp;ontology=VFB"
+        query="type=subeq&amp;query=%3Chttp://purl.obolibrary.org/obo/RO_0002101%3E%20some%20%3Chttp://purl.obolibrary.org/obo/$ID%3E&amp;ontology=VFB"
         countQuery="">
       <matchingCriteria
           type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>

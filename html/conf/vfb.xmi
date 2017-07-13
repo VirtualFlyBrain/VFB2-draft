@@ -573,7 +573,7 @@
   <queries xsi:type="gep_2:CompoundRefQuery"
       id="CompNeuronClassesInnervatingHere"
       name="neurons that innervate the $NAME"
-      description="Neuron classes innervating here"
+      description="neurons that innervate the $NAME"
       returnType="//@libraries.3/@types.1"
       queryChain="//@dataSources.1/@queries.9 //@dataSources.1/@queries.0 //@dataSources.0/@queries.0">
     <matchingCriteria

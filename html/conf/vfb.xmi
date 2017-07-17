@@ -156,7 +156,7 @@
           id="GetFellowClusterMembers"
           name="Get other cluster members"
           description="$NAME's fellow cluster members"
-          query="MATCH (n:Neuron { short_form: '$ID' } )-[r1:Related {label:'member_of'}]->(c:Cluster)-[r2:Related {label:'has_member'}]->(i:Neuron)&lt;-[:Related { label : 'depicts' } ]-(j:Individual)-[k:in_register_with]->(m:Individual) RETURN i.short_form as id, CASE WHEN not i.synonym is null THEN i.label+replace(' ('+reduce(a='',n in i.synonym|a+n+', ')+')',', )',')') ELSE i.label END as name, i.description[0] as def, replace(k.iri,'http:','https:') + '/thumbnailT.png' AS file"
+          query="MATCH (n:Neuron { short_form: '$ID' } )-[r1:Related {label:'member_of'}]->(c:Cluster)-[r2:Related {label:'has_member'}]->(i:Neuron)&lt;-[:Related { label : 'depicts' } ]-(j:Individual)-[k:in_register_with]->(m:Individual) RETURN i.short_form as id, CASE WHEN not i.synonym is null THEN i.label+replace(' ('+reduce(a='',n in i.synonym|a+n+', ')+')',', )',')') ELSE i.label END as name, i.description[0] as def, labels(i) as type, replace(k.iri,'http:','https:') + '/thumbnailT.png' AS file"
           countQuery="MATCH (n:Neuron { short_form: '$ID' } )-[r1:Related {label:'member_of'}]->(c:Cluster)-[r2:Related {label:'has_member'}]->(i:Neuron) RETURN count(i) as count"/>
       <queryChain
           xsi:type="gep_2:ProcessQuery"
@@ -211,7 +211,7 @@
           name="Fetch all example individuals for Class"
           description="Fetch all example Individual instances of this Class or subclasses"
           returnType="//@libraries.3/@types.0"
-          query="MATCH p=(n:Class { short_form: '$ID' } )&lt;-[r:SUBCLASSOF|INSTANCEOF*..]-(i:Individual)&lt;-[:Related { label : 'depicts' } ]-(j:Individual)-[k:in_register_with]->(m:Individual) WITH i, k ORDER BY length(p) asc RETURN distinct i.short_form as id, CASE WHEN not i.synonym is null THEN i.label+replace(' ('+reduce(a='',n in i.synonym|a+n+', ')+')',', )',')') ELSE i.label END as name, i.description[0] as def, replace(k.iri,'http:','https:') + '/thumbnailT.png' AS file"
+          query="MATCH p=(n:Class { short_form: '$ID' } )&lt;-[r:SUBCLASSOF|INSTANCEOF*..]-(i:Individual)&lt;-[:Related { label : 'depicts' } ]-(j:Individual)-[k:in_register_with]->(m:Individual) WITH i, k ORDER BY length(p) asc RETURN distinct i.short_form as id, CASE WHEN not i.synonym is null THEN i.label+replace(' ('+reduce(a='',n in i.synonym|a+n+', ')+')',', )',')') ELSE i.label END as name, i.description[0] as def, labels(i) as type, replace(k.iri,'http:','https:') + '/thumbnailT.png' AS file"
           countQuery="MATCH (n:VFB:Class { short_form: '$ID' } )&lt;-[r:SUBCLASSOF|INSTANCEOF*..]-(i:Individual) RETURN count(i) as count"/>
       <queryChain
           xsi:type="gep_2:ProcessQuery"
@@ -266,7 +266,7 @@
           id="CloneIndFromCloneClass"
           name="Return Clone Individuals from Clone Class "
           description=""
-          query="MATCH (c {short_form:'$ID'})&lt;-[r*0..3]-(i:Individual:Clone)&lt;-[:Related { label : 'depicts' } ]-(j:Individual)-[k:in_register_with]->(m:Individual) RETURN i.short_form as id, CASE WHEN not i.synonym is null THEN i.label+replace(' ('+reduce(a='',n in i.synonym|a+n+', ')+')',', )',')') ELSE i.label END as name, i.description[0] as def, replace(k.iri,'http:','https:') + '/thumbnailT.png' AS file"
+          query="MATCH (c {short_form:'$ID'})&lt;-[r*0..3]-(i:Individual:Clone)&lt;-[:Related { label : 'depicts' } ]-(j:Individual)-[k:in_register_with]->(m:Individual) RETURN i.short_form as id, CASE WHEN not i.synonym is null THEN i.label+replace(' ('+reduce(a='',n in i.synonym|a+n+', ')+')',', )',')') ELSE i.label END as name, i.description[0] as def, labels(i) as type, replace(k.iri,'http:','https:') + '/thumbnailT.png' AS file"
           countQuery="MATCH (c {short_form:'$ID'})&lt;-[r*0..3]-(i:Individual:Clone) return count(i) as count"/>
       <queryChain
           xsi:type="gep_2:ProcessQuery"
@@ -284,7 +284,7 @@
           id="GetClusterMembers"
           name="Get cluster members"
           description="$NAME's members"
-          query="MATCH (c:Cluster { short_form: '$ID' } )-[r2:Related {label:'has_member'}]->(i:Neuron)&lt;-[:Related { label : 'depicts' } ]-(j:Individual)-[k:in_register_with]->(m:Individual) RETURN i.short_form as id, CASE WHEN not i.synonym is null THEN i.label+replace(' ('+reduce(a='',n in i.synonym|a+n+', ')+')',', )',')') ELSE i.label END as name, i.description[0] as def, replace(k.iri,'http:','https:') + '/thumbnailT.png' AS file"
+          query="MATCH (c:Cluster { short_form: '$ID' } )-[r2:Related {label:'has_member'}]->(i:Neuron)&lt;-[:Related { label : 'depicts' } ]-(j:Individual)-[k:in_register_with]->(m:Individual) RETURN i.short_form as id, CASE WHEN not i.synonym is null THEN i.label+replace(' ('+reduce(a='',n in i.synonym|a+n+', ')+')',', )',')') ELSE i.label END as name, i.description[0] as def, labels(i) as type, replace(k.iri,'http:','https:') + '/thumbnailT.png' AS file"
           countQuery="MATCH (c:Cluster { short_form: '$ID' } )-[r2:Related {label:'has_member'}]->(i:Neuron) RETURN count(i) as count"/>
       <queryChain
           xsi:type="gep_2:ProcessQuery"

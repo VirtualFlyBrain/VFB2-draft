@@ -156,7 +156,7 @@
           id="GetFellowClusterMembers"
           name="Get other cluster members"
           description="$NAME's fellow cluster members"
-          query="MATCH (n:Neuron { short_form: '$ID' } )-[r1:Related {label:'member_of'}]->(c:Cluster)-[r2:Related {label:'has_member'}]->(i:Neuron)&lt;-[:Related { label : 'depicts' } ]-(j:Individual)-[k:in_register_with]->(m:Individual) OPTIONAL MATCH (c)-[:Related {label:'has_exemplar'}]->(ei:Individual)-[:INSTANCEOF]->(ec:Class) RETURN i.short_form as id, CASE WHEN not i.synonym is null THEN i.label+replace(' ('+reduce(a='',n in i.synonym|a+n+', ')+')',', )',')') ELSE i.label END as name, coalesce(i.description[0], 'Exemplar: ' + ei.description[0]) as def, COLLECT(DISTINCT ('Exemplar: ' + ec.label)) as type, replace(k.iri,'http:','https:') + '/thumbnailT.png' AS file"
+          query="MATCH (n:Neuron { short_form: '$ID' } )-[r1:Related {label:'member_of'}]->(c:Cluster)-[r2:Related {label:'has_member'}]->(i:Neuron)&lt;-[:Related { label : 'depicts' } ]-(j:Individual)-[k:in_register_with]->(m:Individual) OPTIONAL MATCH (i)-[:INSTANCEOF]->(ec:Class) RETURN i.short_form as id, CASE WHEN not i.synonym is null THEN i.label+replace(' ('+reduce(a='',n in i.synonym|a+n+', ')+')',', )',')') ELSE i.label END as name, i.description[0] as def, COLLECT(DISTINCT ec.label) as type, replace(k.iri,'http:','https:') + '/thumbnailT.png' AS file"
           countQuery="MATCH (n:Neuron { short_form: '$ID' } )-[r1:Related {label:'member_of'}]->(c:Cluster)-[r2:Related {label:'has_member'}]->(i:Neuron) RETURN count(i) as count"/>
       <queryChain
           xsi:type="gep_2:ProcessQuery"

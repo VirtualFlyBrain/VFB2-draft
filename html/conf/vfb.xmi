@@ -120,7 +120,7 @@
           name="Get max 6 images from Neo4j"
           description="fetch Individual instances from ID list"
           runForCount="false"
-          query="MATCH (n:VFB:Class)&lt;-[:SUBCLASSOF|INSTANCEOF*..]-(i:Individual)&lt;-[:Related { label : 'depicts' } ]-(j:Individual)-[k:in_register_with]->(m:Individual) WHERE n.short_form IN $ARRAY_ID_RESULTS RETURN n.short_form as class_Id, labels(n) as class_Type, COLLECT (DISTINCT { image_name: i.label, image_id: i.short_form, image_thumb: replace(k.iri,'http:','https:') + '/thumbnailT.png', template_id: m.short_form}) AS inds LIMIT 6 "
+          query="MATCH (n:VFB:Class)&lt;-[:SUBCLASSOF|INSTANCEOF*..]-(i:Individual)&lt;-[:Related { label : 'depicts' } ]-(j:Individual)-[k:in_register_with]->(m:Individual) WHERE n.short_form IN $ARRAY_ID_RESULTS OPTIONAL MATCH (n)-[:SUBCLASSOF]->(c:Class) RETURN n.short_form as class_Id, COLLECT(DISTINCT c.label) as class_Type, COLLECT (DISTINCT { image_name: i.label, image_id: i.short_form, image_thumb: replace(k.iri,'http:','https:') + '/thumbnailT.png', template_id: m.short_form}) AS inds LIMIT 6 "
           countQuery="MATCH (n:VFB:Class)&lt;-[:SUBCLASSOF|INSTANCEOF*..]-(i:Individual) WHERE n.short_form IN $ARRAY_ID_RESULTS RETURN count(i) AS count"/>
       <queryChain
           xsi:type="gep_2:ProcessQuery"
@@ -138,7 +138,7 @@
           name="Get meta from Neo4j"
           description="Get images for individual list"
           runForCount="false"
-          query="MATCH (i:Individual) WHERE i.short_form IN $ARRAY_ID_RESULTS OPTIONAL MATCH (i)&lt;-[:Related {label:'depicts'}]-(:Individual)-[k1:in_register_with]->(:Individual) OPTIONAL MATCH (i:Cluster)&lt;-[:Related {label:'exemplar_of'}]-(e:Individual) with i, coalesce(replace(k1.iri,'http:','https:') + '/thumbnailT.png','http://flybrain.mrc-lmb.cam.ac.uk/vfb/fc/clusterv/3/' + e.label + '/snapshot.png') as iri, coalesce(i.description[0], CASE WHEN e.short_form IS NOT null THEN 'A Cluster of morphologically similar neurons using affinity propagation clustering based on NBLAST neuron similarity scores (Costa et al., 2016).' ELSE '' END) as cd RETURN i.short_form as id, CASE WHEN not i.synonym is null THEN i.label+replace(' ('+reduce(a='',n in i.synonym|a+n+', ')+')',', )',')') ELSE i.label END as name, cd as def, labels(i) as type, iri AS file"
+          query="MATCH (i:Individual) WHERE i.short_form IN $ARRAY_ID_RESULTS OPTIONAL MATCH (i)&lt;-[:Related {label:'depicts'}]-(:Individual)-[k1:in_register_with]->(:Individual) OPTIONAL MATCH (i:Cluster)&lt;-[:Related {label:'exemplar_of'}]-(e:Individual) with i, coalesce(replace(k1.iri,'http:','https:') + '/thumbnailT.png','http://flybrain.mrc-lmb.cam.ac.uk/vfb/fc/clusterv/3/' + e.label + '/snapshot.png') as iri, coalesce(i.description[0], CASE WHEN e.short_form IS NOT null THEN 'A Cluster of morphologically similar neurons using affinity propagation clustering based on NBLAST neuron similarity scores (Costa et al., 2016).' ELSE '' END) as cd OPTIONAL MATCH (i)-[:INSTANCEOF]->(c:Class) RETURN i.short_form as id, CASE WHEN not i.synonym is null THEN i.label+replace(' ('+reduce(a='',n in i.synonym|a+n+', ')+')',', )',')') ELSE i.label END as name, cd as def, COLLECT(DISTINCT c.label) as type, iri AS file"
           countQuery="MATCH(i:Individual) WHERE i.short_form IN $ARRAY_ID_RESULTS RETURN count(i) as count"/>
       <queryChain
           xsi:type="gep_2:ProcessQuery"
@@ -469,9 +469,7 @@
       returnType="//@libraries.3/@types.1"
       queryChain="//@dataSources.1/@queries.9 //@dataSources.1/@queries.0 //@dataSources.0/@queries.0">
     <matchingCriteria
-        type="//@libraries.3/@types.1 //@libraries.3/@types.2"/>
-    <matchingCriteria
-        type="//@libraries.3/@types.1 //@libraries.3/@types.4"/>
+        type="//@libraries.3/@types.1"/>
   </queries>
   <queries xsi:type="gep_2:CompoundRefQuery"
       id="partsof"

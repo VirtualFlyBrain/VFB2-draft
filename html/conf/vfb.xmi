@@ -120,8 +120,8 @@
           name="Get max 6 images from Neo4j"
           description="fetch Individual instances from ID list"
           runForCount="false"
-          query="MATCH (n:VFB:Class)&lt;-[:SUBCLASSOF|INSTANCEOF*..]-(i:Individual)&lt;-[:Related { label : 'depicts' } ]-(j:Individual)-[k:in_register_with]->(m:Individual) WHERE n.short_form IN $ARRAY_ID_RESULTS OPTIONAL MATCH (n)-[:SUBCLASSOF]->(c:Class) RETURN n.short_form as class_Id, COLLECT(DISTINCT c.label) as class_Type, COLLECT (DISTINCT { image_name: i.label, image_id: i.short_form, image_thumb: replace(k.iri,'http:','https:') + '/thumbnailT.png', template_id: m.short_form}) AS inds LIMIT 6 "
-          countQuery="MATCH (n:VFB:Class)&lt;-[:SUBCLASSOF|INSTANCEOF*..]-(i:Individual) WHERE n.short_form IN $ARRAY_ID_RESULTS RETURN count(i) AS count"/>
+          query="MATCH (n:Class) WHERE n.short_form IN $ARRAY_ID_RESULTS OPTIONAL MATCH (n)&lt;-[:SUBCLASSOF|INSTANCEOF*..]-(i:Individual)&lt;-[:Related { label : 'depicts' } ]-(j:Individual)-[k:in_register_with]->(m:Individual) OPTIONAL MATCH (n)-[:SUBCLASSOF]->(c:Class) RETURN n.short_form as class_Id, COLLECT(DISTINCT c.label) as class_Type, COLLECT (DISTINCT { image_name: i.label, image_id: i.short_form, image_thumb: replace(k.iri,'http:','https:') + '/thumbnailT.png', template_id: m.short_form}) AS inds LIMIT 6 "
+          countQuery="MATCH (n:VFB:Class) WHERE n.short_form IN $ARRAY_ID_RESULTS RETURN count(n) AS count"/>
       <queryChain
           xsi:type="gep_2:ProcessQuery"
           name="Process images"

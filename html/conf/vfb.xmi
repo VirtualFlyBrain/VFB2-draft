@@ -28,8 +28,8 @@
         id="Neuron"
         name="Neuron"/>
     <types xsi:type="gep_1:SimpleType"
-        id="Tract"
-        name="Tract"/>
+        id="Neuron_projection_bundle"
+        name="Neuron Projection Bundle"/>
     <types xsi:type="gep_1:SimpleType"
         id="Clone"
         name="Clone"/>

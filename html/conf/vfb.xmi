@@ -87,6 +87,9 @@
     <types xsi:type="gep_1:SimpleType"
         id="Cluster"
         name="Cluster"/>
+    <types xsi:type="gep_1:SimpleType"
+        id="ganglion"
+        name="Ganglion"/>
   </libraries>
   <libraries
       id="vfbLibrary"
@@ -423,6 +426,8 @@
       queryChain="//@dataSources.1/@queries.11 //@dataSources.1/@queries.6 //@dataSources.0/@queries.1">
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
+    <matchingCriteria
+        type="//@libraries.3/@types.1 //@libraries.3/@types.23"/>
   </queries>
   <queries xsi:type="gep_2:CompoundRefQuery"
       id="ImagesNeuronsClustered"
@@ -432,6 +437,8 @@
       queryChain="//@dataSources.1/@queries.10 //@dataSources.1/@queries.6 //@dataSources.0/@queries.1">
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
+    <matchingCriteria
+        type="//@libraries.3/@types.1 //@libraries.3/@types.23"/>
   </queries>
   <queries xsi:type="gep_2:CompoundRefQuery"
       id="neuronsparthere"
@@ -440,6 +447,8 @@
       queryChain="//@dataSources.1/@queries.2 //@dataSources.1/@queries.0 //@dataSources.0/@queries.0">
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
+    <matchingCriteria
+        type="//@libraries.3/@types.1 //@libraries.3/@types.23"/>
   </queries>
   <queries xsi:type="gep_2:CompoundRefQuery"
       id="neuronssynaptic"
@@ -448,6 +457,8 @@
       queryChain="//@dataSources.1/@queries.3 //@dataSources.1/@queries.0 //@dataSources.0/@queries.0">
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
+    <matchingCriteria
+        type="//@libraries.3/@types.1 //@libraries.3/@types.23"/>
   </queries>
   <queries xsi:type="gep_2:CompoundRefQuery"
       id="neuronspresynaptic"
@@ -456,6 +467,8 @@
       queryChain="//@dataSources.1/@queries.4 //@dataSources.1/@queries.0 //@dataSources.0/@queries.0">
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
+    <matchingCriteria
+        type="//@libraries.3/@types.1 //@libraries.3/@types.23"/>
   </queries>
   <queries xsi:type="gep_2:CompoundRefQuery"
       id="neuronspostsynaptic"
@@ -464,6 +477,8 @@
       queryChain="//@dataSources.1/@queries.5 //@dataSources.1/@queries.0 //@dataSources.0/@queries.0">
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
+    <matchingCriteria
+        type="//@libraries.3/@types.1 //@libraries.3/@types.23"/>
   </queries>
   <queries xsi:type="gep_2:CompoundRefQuery"
       id="ListClustMembers"
@@ -491,6 +506,8 @@
       queryChain="//@dataSources.1/@queries.8 //@dataSources.1/@queries.0 //@dataSources.0/@queries.0">
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
+    <matchingCriteria
+        type="//@libraries.3/@types.1 //@libraries.3/@types.23"/>
   </queries>
   <queries xsi:type="gep_2:CompoundRefQuery"
       id="componentsOf"
@@ -509,5 +526,7 @@
       queryChain="//@dataSources.1/@queries.13 //@dataSources.1/@queries.0 //@dataSources.0/@queries.0">
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
+    <matchingCriteria
+        type="//@libraries.3/@types.1 //@libraries.3/@types.23"/>
   </queries>
 </gep:GeppettoModel>

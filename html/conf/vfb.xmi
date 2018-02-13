@@ -98,7 +98,7 @@
       id="neo4JDataSourceService"
       name="neo4j Data Source"
       dataSourceService="neo4jDataSource"
-      url="http://pdb-alpha.virtualflybrain.org/db/data/transaction"
+      url="http://VFB_PDB_SERVER/db/data/transaction"
       dependenciesLibrary="//@libraries.3"
       targetLibrary="//@libraries.4">
     <libraryConfigurations
@@ -242,7 +242,7 @@
       id="aberOWLDataSource"
       name="Aber OWL Data Source"
       dataSourceService="aberOWLDataSource"
-      url="http://owl-alpha.virtualflybrain.org/api/runQuery.groovy"
+      url="http://VFB_OWL_SERVER/api/runQuery.groovy"
       dependenciesLibrary="//@libraries.3"
       targetLibrary="//@libraries.4">
     <queries

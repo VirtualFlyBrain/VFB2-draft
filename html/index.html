@@ -45,6 +45,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     };
     vfbclose = function () {
         UIkit.offcanvas.hide();
+        $('.vfb-overlay-label').hide();
         history.pushState({}, name, "/");
         $('.callout-fullscreen').hide();
         return false;
@@ -178,14 +179,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <div class='callout-fullscreen' onclick="vfbclose();" style="display: none;">
-<div class='callout-floatover' onclick="$(this).hide();" style="display: none;">Loading....</div>
-<div id="vfb-content-block" class="callout vfbcontent" style="display: none;">
-    <div id="vfb-content-titlebar">
-        <div id="vfb-content-title"></div>
-        <i onclick="vfbclose();" class="close-slider uk-icon-justify uk-icon-large uk-icon-close"></i>
+    <div style="top: 13VH;left: 28VW;transform: rotate(-40deg)" class="vfb-overlay-label">Search <i class="fa fa-long-arrow-right"></i></div>
+    <div style="top: 16VH;left: 29VW;transform: rotate(-50deg);" class="vfb-overlay-label">Build a Query <i class="fa fa-long-arrow-right"></i></div>
+    <div style="top: 17.5VH;left: 34VW;transform: rotate(-60deg);" class="vfb-overlay-label">Layer Controls <i class="fa fa-long-arrow-right"></i></div>
+    <div style="top: 14VH;left: 60VW;transform: rotate(45deg);" class="vfb-overlay-label"><i class="fa fa-long-arrow-left"></i> Tutorials</div>
+    <div style="top: 28VH;left: 10VW;transform: rotate(5deg);" class="vfb-overlay-label"><i class="fa fa-long-arrow-left"></i> Manual 3D camera controls<p>Using your mouse/trackpad with shift/ctrl is quicker!</p></div>
+    <div style="top: 80VH;left: 45VW;transform: rotate(1deg);text-align:  right;" class="vfb-overlay-label">Slice Viewer <i class="fa fa-long-arrow-right"></i><p>Click to select &amp; explore anatomy<br>Click with shift to directly add regions<br>Explore the slices with your trackpad/wheel<br>Scroll+ctrl=zoom; pressing shift goes faster!</p></div>
+    <div style="top: 60VH;left: 5VW;transform: rotate(-20deg);text-align:  right;" class="vfb-overlay-label">3D display <i class="fa fa-long-arrow-right"></i><p>Click and drag to explore<br>Add more neurons, expression or anatomy <br>via the Search, Query results, Slice viewer<br>or term information links or images.</p></div>
+      
+    <div id="vfb-content-block" class="callout vfbcontent" style="display: none;">
+        <div id="vfb-content-titlebar">
+            <div id="vfb-content-title"></div>
+            <i onclick="vfbclose();" class="close-slider uk-icon-justify uk-icon-large uk-icon-close"></i>
+        </div>
+        <div id="vfb-content-text" class="vfbcontent" ></div>
     </div>
-    <div id="vfb-content-text" class="vfbcontent" ></div>
-</div>
 </div>
 <div class="vfb-geppetto-frame">
     <object id="geppetto-window-object"

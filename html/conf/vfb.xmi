@@ -196,7 +196,7 @@
           name="Find domain individuals for template id"
           description="Find domain individuals for template id"
           returnType="//@libraries.3/@types.0"
-          query="MATCH (n:Template {short_form:'$ID'})&lt;-[:depicts]-(:Template)&lt;-[r:in_register_with]-(dc:Individual)-[:depicts]->(di:Individual)-[:INSTANCEOF]->(d:Class) WHERE has(r.index) OPTIONAL MATCH (d)-[:SUBCLASSOF]->(pc:Class) RETURN distinct di.short_form as id, di.label as name, d.description[0] as def, COLLECT(DISTINCT pc.label) as type, replace(r.iri,'http:','https:') + '/thumbnailT.png' AS file"
+          query="MATCH (n:Template {short_form:'$ID'})&lt;-[:depicts]-(:Template)&lt;-[r:in_register_with]-(dc:Individual)-[:depicts]->(di:Individual)-[:INSTANCEOF]->(d:Class) WHERE has(r.index) RETURN distinct di.short_form as id, di.label as name, coalesce(di.description[0],d.description[0]) as def, COLLECT(DISTINCT d.label) as type, replace(r.iri,'http:','https:') + '/thumbnailT.png' AS file"
           countQuery="MATCH (n:Template {short_form:'$ID'})&lt;-[:depicts]-(:Template)&lt;-[r:in_register_with]-(dc:Individual)-[:depicts]->(di:Individual)-[:INSTANCEOF]->(d:Class) WHERE has(r.index) RETURN count(di) as count"/>
       <queryChain
           xsi:type="gep_2:ProcessQuery"

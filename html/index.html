@@ -45,6 +45,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     };
     vfbclose = function () {
         UIkit.offcanvas.hide();
+        $('.vfb-overlay-label').hide();
         history.pushState({}, name, "/");
         $('.callout-fullscreen').hide();
         return false;
@@ -106,11 +107,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         return false;
     }
     
-    setTimeout("if ($('.vfb-splash-screen').is(':visible') && $('#errormodal').is(':visible') == true){$('#vfb-splash-loading-text').text('Error: ' + $('#errormodal-text').text())};", 10000);
-    setTimeout("if ($('.vfb-splash-screen').is(':visible')){location.reload();};", 60000);
-    if (window.location.href.indexOf('i=')<0){ setTimeout("vfbopen('home');", 5000);};
-
-    setTimeout("if ($('.vfb-splash-screen').is(':visible')){location.reload();};", 60000);
+    //if (window.location.href.indexOf('i=')<0){ setTimeout("$('.callout-fullscreen').show();", 5000);};
     
 </script>
 
@@ -141,14 +138,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="vfb-menu">
 
         <nav class="uk-navbar uk-navbar-attached">
-             <!--<
-            <ul class="uk-navbar-nav">
-                <li>
-                    <a href="" onclick="return vfbopen('home');" title="Virtual Fly Brain Home" class="uk-navbar-brand">
-                       div data-reactroot="" class="gpt-drosophila"></div>
-                    </a>
-                </li>
-            </ul>-->
+             
 
 
             <div class="uk-navbar-flip">
@@ -162,10 +152,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <div title="Facebook Page" class="socialmedia" onclick="window.open('https://www.facebook.com/pages/Virtual-Fly-Brain/131151036987118','new_window')"><i class="top-icon fa fa-facebook"></i></div>
                         <div title="Twitter Feed" class="socialmedia" onclick="window.open('http://twitter.com/virtualflybrain', 'new_window')"><i class="top-icon fa fa-twitter"></i></div>   
                     </li>
-                     <!-- <li>
-                        <a class="uk-navbar-toggle uk-hidden-small" href="#offcanvas-right" data-uk-offcanvas="mode:'slide'"></a>
-                       Modes: 'push', 'slide', 'reveal', 'none'; https://getuikit.com/docs/offcanvas.html 
-                    </li>-->
+                    
                 </ul>
             </div>
 
@@ -185,112 +172,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <li onclick="vfbopen('home')"><i class="uk-icon-justify uk-icon-large uk-icon-home"></i> Home</li>
                         <li onclick="vfbsearch()"><i class="uk-icon-justify uk-icon-large uk-icon-search"></i> Search</li>
                         <li onclick="vfbquery()"><i class="uk-icon-justify uk-icon-large uk-icon-cogs"></i> Query</li>
-<!--                         <li><i class="uk-icon-justify uk-icon-large uk-icon-user"></i> Some text</li> -->
                     </ul>
                 </div>
             </div>
         </div>
 
 </section>
-<!--
-<nav class="top-bar" data-topbar>
-    <ul class="title-area">
-        <li class="name">
-            <img class="logo" src="/images/orangeVFBanimLogo.gif" alt="VirtualFlyBrain.org">
-        </li>
-        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a>
-        </li>
-    </ul>
-    <section class="top-bar-section">
-        <ul class="right">
-            <li class="has-dropdown mySpecialDropdown-right"><a href="#">Stacks</a>
-                <ul class="dropdown">
-                    <li class="has-dropdown"><a href="#">Adult Brain</a>
-                        <ul class="dropdown">
-                            <li><a href="#" onload="">Janelia Brain (JFRC2/2010)</a></li>
-                            <li><a href="#" onload="">Ito Half Brain (tricolour)</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-dropdown mySpecialDropdown-left"><a href="#">Downloads </a>
-                        <ul class="dropdown">
-                            <li><a href="#template_files_downloads"
-                                   onclick="return vfbopen('template_files_downloads');">Template data</a></li>
-                            <li><a href="#image_data_downloads" onclick="return vfbopen('image_data_downloads');">Image
-                                data</a></li>
-                            <li><a href="#supp_files_downloads" onclick="return vfbopen('supp_files_downloads');">Support
-                                files</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        <ul class="left">
-            <li class="has-dropdown mySpecialDropdown-left">
-                <a href="#"> Site </a>
-                <ul class="dropdown">
-                    <li><a href="#home" onclick="return vfbopen('home');">Home</a></li>
-                    <li><a href="#overview" onclick="return vfbopen('overview');">Overview</a></li>
-                    <li><a href="#features" onclick="return vfbopen('features');">Features</a></li>
-                    <li><a href="#releases" onclick="return vfbopen('releases');">Releases</a></li>
-                    <li><a href="#usefulLinks" onclick="return vfbopen('usefulLinks');">Useful Links</a></li>
-                    <li><a href="#yourPaper" onclick="return vfbopen('yourPaper');">Tell us about your data</a></li>
-                    <li>
-                        <a href="mailto:&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#064;&#118;&#105;&#114;&#116;&#117;&#097;&#108;&#102;&#108;&#121;&#098;&#114;&#097;&#105;&#110;&#046;&#111;&#114;&#103;">Email
-                            Us</a>
-                    </li>
-                    <li><a href="#about_us" onclick="return vfbopen('about_us');">About us</a></li>
-                    <li><a href="http://tinyurl.com/jqdxh28" target="_blank">The Old Site</a></li>
-                </ul>
-            </li>
-            <li class="has-dropdown mySpecialDropdown-left"><a href="#">Tools </a>
-                <ul class="dropdown">
-                    <li><a href="#search" onclick="return vfbsearch();">Search</a></li>
-                    <li><a href="#query" onclick="return vfbquery();">Query Builder</a></li>
-                    <li><a href="http://jefferislab.org/si/nblast/" target="_blank">NBLAST</a></li>
-                    <li><a href="#registration" onclick="return vfbopen('registration');">Image Registration</a></li>
-                </ul>
-            </li>
-            <li class="has-dropdown mySpecialDropdown-left"><a href="#">Help </a>
-                <ul class="dropdown">
-                    <li><a href="#faq" onclick="return vfbopen('faq');">FAQ</a></li>
-                    <li><a href="#tutorial" onclick="return vfbopen('tutorial');">Tutorial Videos</a></li>
-                    <li><a href="https://groups.google.com/forum/#!forum/vfb-suport" target="_blank">Support
-                        Forum</a></li>
-                    <li><a id="issueLinkM" href="#Feedback"
-                           onclick="return vfbopen('Feedback')" target="_blank">Report an
-                        issue</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </section>
-</nav>
--->
-<div class='callout-fullscreen' onclick="vfbclose();">
-<div id="vfb-content-block" class="callout vfbcontent" style="display: none;">
-    <div id="vfb-content-titlebar">
-        <div id="vfb-content-title"></div>
-        <i onclick="vfbclose();" class="close-slider uk-icon-justify uk-icon-large uk-icon-close"></i>
+
+
+<div class='callout-fullscreen' onclick="vfbclose();" style="display: none;">
+    <div style="top: 13VH;left: 28VW;transform: rotate(-40deg)" class="vfb-overlay-label">Search <i class="fa fa-long-arrow-right"></i></div>
+    <div style="top: 16VH;left: 29VW;transform: rotate(-50deg);" class="vfb-overlay-label">Build a Query <i class="fa fa-long-arrow-right"></i></div>
+    <div style="top: 17.5VH;left: 34VW;transform: rotate(-60deg);" class="vfb-overlay-label">Layer Controls <i class="fa fa-long-arrow-right"></i></div>
+    <div style="top: 14VH;left: 60VW;transform: rotate(45deg);" class="vfb-overlay-label"><i class="fa fa-long-arrow-left"></i> Tutorials</div>
+    <div style="top: 28VH;left: 10VW;transform: rotate(5deg);" class="vfb-overlay-label"><i class="fa fa-long-arrow-left"></i> Manual 3D camera controls<p>Using your mouse/trackpad with shift/ctrl is quicker!</p></div>
+    <div style="top: 80VH;left: 45VW;transform: rotate(1deg);text-align:  right;" class="vfb-overlay-label">Slice Viewer <i class="fa fa-long-arrow-right"></i><p>Click to select &amp; explore anatomy<br>Click with shift to directly add regions<br>Explore the slices with your trackpad/wheel<br>Scroll+ctrl=zoom; pressing shift goes faster!</p></div>
+    <div style="top: 60VH;left: 5VW;transform: rotate(-20deg);text-align:  right;" class="vfb-overlay-label">3D display <i class="fa fa-long-arrow-right"></i><p>Click and drag to explore<br>Add more neurons, expression or anatomy <br>via the Search, Query results, Slice viewer<br>or term information links or images.</p></div>
+      
+    <div id="vfb-content-block" class="callout vfbcontent" style="display: none;">
+        <div id="vfb-content-titlebar">
+            <div id="vfb-content-title"></div>
+            <i onclick="vfbclose();" class="close-slider uk-icon-justify uk-icon-large uk-icon-close"></i>
+        </div>
+        <div id="vfb-content-text" class="vfbcontent" ></div>
     </div>
-    <div id="vfb-content-text" class="vfbcontent" ></div>
-</div>
 </div>
 <div class="vfb-geppetto-frame">
     <object id="geppetto-window-object"
             data="/org.geppetto.frontend/geppetto?load_project_from_url=http://VFB_MAIN_SERVER/conf/vfb.json">
     </object>
 </div>
-
-<!-- <div class="vfb-splash-screen">
-	<center>
-		<h1>Virtual Fly Brain</h1>	
-		<h3>a hub for <i>Drosophila melanogaster</i> neuroscience research</h3>	
-		<div data-reactroot="" class="gpt-fly fa-spin"></div>	
-		<h2>Loading <span id="vfb-splash-loading-text">VFB 3D Engine</span>...</h2>
-       <h1>Note: Alpha version for testing only</h1>
-	</center>
-</div> -->
-
 </body>
 
 </html>

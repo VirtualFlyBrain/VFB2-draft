@@ -237,3 +237,13 @@ body {
 .uk-navbar-brand {
     width: 70px;
 }
+
+.vfb-overlay-label {
+    position:absolute;
+    color:white;
+    font-size: 20px;
+}
+
+.vfb-overlay-label p {
+    font-size: 15px;
+}

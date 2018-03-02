@@ -66,7 +66,7 @@
 					 majorVersion = parseInt(navigator.appVersion,10);
 					}
 					$('#feedback_systemDetails')[0].innerHTML = navigator.userAgent + ' Size:[' + browserSize + ']';
-					$('#feedback_githubissue')[0].html = $('#feedback_githubissue')[0].html + 'Referring page: ' + theURL + '; System details: ' + navigator.userAgent + ' Size:[' + browserSize + ']';
+					$('#feedback_githubissue')[0].href = $('#feedback_githubissue')[0].href + 'Referring page: ' + theURL + '; System details: ' + navigator.userAgent + ' Size:[' + browserSize + ']';
 				</script>
 				<p>We really appreciate any feedback you could give us.</p>
 				<p>You can simply <b><span id="emailUs"></span></b>email us (support@virtualflybrain.org) with details.</p>

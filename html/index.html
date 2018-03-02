@@ -58,6 +58,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     titles['registration']="Contribute your data to <span style='color:white;'> Virtual Fly Brain</span>";
 
     vfbopen = function (page, update) {
+        window.thePreviousURL=window.location.toString();
         UIkit.offcanvas.hide();
         if (typeof update === 'undefined') {
             update = true;

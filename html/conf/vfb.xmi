@@ -90,6 +90,9 @@
     <types xsi:type="gep_1:SimpleType"
         id="ganglion"
         name="Ganglion"/>
+    <types xsi:type="gep_1:SimpleType"
+        id="DataSet"
+        name="DataSet"/>
   </libraries>
   <libraries
       id="vfbLibrary"
@@ -215,6 +218,26 @@
           description="$NAME's members"
           query="MATCH (c:Cluster { short_form: '$ID' } )-[r2:has_member]->(i:Neuron)&lt;-[:depicts]-(j:Individual)-[k:in_register_with]->(m:Individual) OPTIONAL MATCH (i)-[:INSTANCEOF]->(ec:Class) RETURN i.short_form as id, CASE WHEN not i.synonym is null THEN i.label+replace(' ('+reduce(a='',n in i.synonym|a+n+', ')+')',', )',')') ELSE i.label END as name, i.description[0] as def, COLLECT(DISTINCT ec.label) as type, replace(k.folder,'http:','https:') + '/thumbnailT.png' AS file"
           countQuery="MATCH (c:Cluster { short_form: '$ID' } )-[r2:has_member]->(i:Neuron) RETURN count(i) as count"/>
+      <queryChain
+          xsi:type="gep_2:ProcessQuery"
+          name="Process Images"
+          returnType="//@libraries.3/@types.0"
+          queryProcessorId="vfbCreateResultListForIndividualsForQueryResultsQueryProcessor"/>
+    </queries>
+    <queries
+        xsi:type="gep_2:CompoundQuery"
+        id="imagesForDataSet"
+        name="Find images for dataset"
+        description="Images in a dataset"
+        returnType="//@libraries.3/@types.0">
+      <queryChain
+          xsi:type="gep_2:SimpleQuery"
+          id="neoImagesForDataSet"
+          name="Find images for dataset"
+          description="Find images for a dataset"
+          returnType="//@libraries.3/@types.0"
+          query="MATCH (:DataSet {short_form:'$ID'})&lt;-[:has_source]-(di:Individual)&lt;-[:depicts]-(dc:Individual)-[r:in_register_with]->(:Template) OPTIONAL MATCH (di)-[:INSTANCEOF]->(d:Class) RETURN distinct di.short_form as id, di.label as name, coalesce(di.description[0],di.description[0]) as def, COLLECT(DISTINCT d.label) as type, replace(r.folder,'http:','https:') + '/thumbnailT.png' AS file"
+          countQuery="MATCH (:DataSet {short_form:'$ID'})&lt;-[:has_source]-(di:Individual) RETURN count(di) as count"/>
       <queryChain
           xsi:type="gep_2:ProcessQuery"
           name="Process Images"
@@ -497,6 +520,15 @@
       queryChain="//@dataSources.0/@queries.4">
     <matchingCriteria
         type="//@libraries.3/@types.20 //@libraries.3/@types.0"/>
+  </queries>
+  <queries xsi:type="gep_2:CompoundRefQuery"
+      id="datasetImages"
+      name="Show all images for a dataset"
+      description="List all images included in $NAME"
+      returnType="//@libraries.3/@types.0"
+      queryChain="//@dataSources.0/@queries.6">
+    <matchingCriteria
+        type="//@libraries.3/@types.24"/>
   </queries>
   <queries xsi:type="gep_2:CompoundRefQuery"
       id="CompNeuronClassesInnervatingHere"

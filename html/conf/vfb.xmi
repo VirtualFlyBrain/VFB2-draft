@@ -28,8 +28,8 @@
         id="Neuron"
         name="Neuron"/>
     <types xsi:type="gep_1:SimpleType"
-        id="Tract"
-        name="Tract"/>
+        id="Neuron_projection_bundle"
+        name="Neuron Projection Bundle"/>
     <types xsi:type="gep_1:SimpleType"
         id="Clone"
         name="Clone"/>
@@ -87,6 +87,12 @@
     <types xsi:type="gep_1:SimpleType"
         id="Cluster"
         name="Cluster"/>
+    <types xsi:type="gep_1:SimpleType"
+        id="ganglion"
+        name="Ganglion"/>
+    <types xsi:type="gep_1:SimpleType"
+        id="DataSet"
+        name="DataSet"/>
   </libraries>
   <libraries
       id="vfbLibrary"
@@ -95,7 +101,7 @@
       id="neo4JDataSourceService"
       name="neo4j Data Source"
       dataSourceService="neo4jDataSource"
-      url="http://pdl.virtualflybrain.org/db/data/transaction"
+      url="http://VFB_PDB_SERVER/db/data/transaction"
       dependenciesLibrary="//@libraries.3"
       targetLibrary="//@libraries.4">
     <libraryConfigurations
@@ -112,15 +118,15 @@
         format="owl"/>
     <queries
         xsi:type="gep_2:CompoundQuery"
-        name="Get and process 6 example images from Neo4j for class list"
+        name="Get and process example images from Neo4j for class list"
         description=""
         runForCount="false">
       <queryChain
           xsi:type="gep_2:SimpleQuery"
-          name="Get max 6 images from Neo4j"
+          name="Get images from Neo4j for class examples"
           description="fetch Individual instances from ID list"
           runForCount="false"
-          query="MATCH (n:Class) WHERE n.short_form IN $ARRAY_ID_RESULTS OPTIONAL MATCH (n)&lt;-[:SUBCLASSOF|INSTANCEOF*..]-(i:Individual)&lt;-[:Related { label : 'depicts' } ]-(j:Individual)-[k:in_register_with]->(m:Individual) OPTIONAL MATCH (n)-[:SUBCLASSOF]->(c:Class) RETURN n.short_form as class_Id, COLLECT(DISTINCT c.label) as class_Type, COLLECT (DISTINCT { image_name: i.label, image_id: i.short_form, image_thumb: replace(k.iri,'http:','https:') + '/thumbnailT.png', template_id: m.short_form}) AS inds LIMIT 6 "
+          query="MATCH (n:Class) WHERE n.short_form IN $ARRAY_ID_RESULTS OPTIONAL MATCH (n)&lt;-[:SUBCLASSOF|INSTANCEOF*..]-(i:Individual)&lt;-[:depicts]-(j:Individual)-[k:in_register_with]->(m:Individual) OPTIONAL MATCH (n)-[:SUBCLASSOF]->(c:Class) RETURN n.short_form as class_Id, COLLECT(DISTINCT c.label) as class_Type, COLLECT (DISTINCT { image_name: i.label, image_id: i.short_form, image_thumb: replace(k.folder,'http:','https:') + '/thumbnailT.png', template_id: m.short_form}) AS inds"
           countQuery="MATCH (n:VFB:Class) WHERE n.short_form IN $ARRAY_ID_RESULTS RETURN count(n) AS count"/>
       <queryChain
           xsi:type="gep_2:ProcessQuery"
@@ -138,7 +144,7 @@
           name="Get meta from Neo4j"
           description="Get images for individual list"
           runForCount="false"
-          query="MATCH (i:Individual) WHERE i.short_form IN $ARRAY_ID_RESULTS OPTIONAL MATCH (i)&lt;-[:Related {label:'depicts'}]-(:Individual)-[k1:in_register_with]->(:Individual) OPTIONAL MATCH (i:Cluster)&lt;-[:Related {label:'exemplar_of'}]-(e:Individual) OPTIONAL MATCH (i)-[:INSTANCEOF]->(ic:Class) OPTIONAL MATCH (e)-[:INSTANCEOF]->(ec:Class) with coalesce('Exemplar: ' + ec.label,ic.label) as ct, i, coalesce(replace(k1.iri,'http:','https:') + '/thumbnailT.png','http://flybrain.mrc-lmb.cam.ac.uk/vfb/fc/clusterv/3/' + e.label + '/snapshot.png') as iri, i.description[0] as cd RETURN i.short_form as id, CASE WHEN not i.synonym is null THEN i.label+replace(' ('+reduce(a='',n in i.synonym|a+n+', ')+')',', )',')') ELSE i.label END as name, cd as def, COLLECT(DISTINCT ct) as type, iri AS file"
+          query="MATCH (i:Individual) WHERE i.short_form IN $ARRAY_ID_RESULTS OPTIONAL MATCH (i)&lt;-[:depicts]-(:Individual)-[k1:in_register_with]->(:Individual) OPTIONAL MATCH (i:Cluster)&lt;-[:exemplar_of]-(e:Individual) OPTIONAL MATCH (i)-[:INSTANCEOF]->(ic:Class) OPTIONAL MATCH (e)-[:INSTANCEOF]->(ec:Class) with coalesce('Exemplar: ' + ec.label,ic.label) as ct, i, coalesce(replace(k1.folder,'http:','https:') + '/thumbnailT.png','http://flybrain.mrc-lmb.cam.ac.uk/vfb/fc/clusterv/3/' + e.label + '/snapshot.png') as iri, i.description[0] as cd RETURN i.short_form as id, CASE WHEN not i.synonym is null THEN i.label+replace(' ('+reduce(a='',n in i.synonym|a+n+', ')+')',', )',')') ELSE i.label END as name, cd as def, COLLECT(DISTINCT ct) as type, iri AS file"
           countQuery="MATCH(i:Individual) WHERE i.short_form IN $ARRAY_ID_RESULTS RETURN count(i) as count"/>
       <queryChain
           xsi:type="gep_2:ProcessQuery"
@@ -156,8 +162,8 @@
           id="GetFellowClusterMembers"
           name="Get other cluster members"
           description="$NAME's fellow cluster members"
-          query="MATCH (n:Neuron { short_form: '$ID' } )-[r1:Related {label:'member_of'}]->(c:Cluster)-[r2:Related {label:'has_member'}]->(i:Neuron)&lt;-[:Related { label : 'depicts' } ]-(j:Individual)-[k:in_register_with]->(m:Individual) OPTIONAL MATCH (i)-[:INSTANCEOF]->(ec:Class) RETURN i.short_form as id, CASE WHEN not i.synonym is null THEN i.label+replace(' ('+reduce(a='',n in i.synonym|a+n+', ')+')',', )',')') ELSE i.label END as name, i.description[0] as def, COLLECT(DISTINCT ec.label) as type, replace(k.iri,'http:','https:') + '/thumbnailT.png' AS file"
-          countQuery="MATCH (n:Neuron { short_form: '$ID' } )-[r1:Related {label:'member_of'}]->(c:Cluster)-[r2:Related {label:'has_member'}]->(i:Neuron) RETURN count(i) as count"/>
+          query="MATCH (n:Neuron { short_form: '$ID' } )-[r1:member_of]->(c:Cluster)-[r2:has_member]->(i:Neuron)&lt;-[:depicts]-(j:Individual)-[k:in_register_with]->(m:Individual) OPTIONAL MATCH (i)-[:INSTANCEOF]->(ec:Class) RETURN i.short_form as id, CASE WHEN not i.synonym is null THEN i.label+replace(' ('+reduce(a='',n in i.synonym|a+n+', ')+')',', )',')') ELSE i.label END as name, i.description[0] as def, COLLECT(DISTINCT ec.label) as type, replace(k.folder,'http:','https:') + '/thumbnailT.png' AS file"
+          countQuery="MATCH (n:Neuron { short_form: '$ID' } )-[r1:member_of]->(c:Cluster)-[r2:has_member]->(i:Neuron) RETURN count(i) as count"/>
       <queryChain
           xsi:type="gep_2:ProcessQuery"
           name="Process Images"
@@ -173,7 +179,7 @@
           name="Fetch all example individuals for Class"
           description="Fetch all example Individual instances of this Class or subclasses"
           returnType="//@libraries.3/@types.0"
-          query="MATCH p=(n:Class { short_form: '$ID' } )&lt;-[r:SUBCLASSOF|INSTANCEOF*..]-(i:Individual)&lt;-[:Related { label : 'depicts' } ]-(j:Individual)-[k:in_register_with]->(m:Individual) WITH i, k ORDER BY length(p) asc OPTIONAL MATCH (i)-[:INSTANCEOF]->(c:Class) RETURN distinct i.short_form as id, CASE WHEN not i.synonym is null THEN i.label+replace(' ('+reduce(a='',n in i.synonym|a+n+', ')+')',', )',')') ELSE i.label END as name, i.description[0] as def, COLLECT(DISTINCT c.label) as type, replace(k.iri,'http:','https:') + '/thumbnailT.png' AS file"
+          query="MATCH p=(n:Class { short_form: '$ID' } )&lt;-[r:SUBCLASSOF|INSTANCEOF*..]-(i:Individual)&lt;-[:depicts]-(j:Individual)-[k:in_register_with]->(m:Individual) WITH i, k ORDER BY length(p) asc OPTIONAL MATCH (i)-[:INSTANCEOF]->(c:Class) RETURN distinct i.short_form as id, CASE WHEN not i.synonym is null THEN i.label+replace(' ('+reduce(a='',n in i.synonym|a+n+', ')+')',', )',')') ELSE i.label END as name, i.description[0] as def, COLLECT(DISTINCT c.label) as type, replace(k.folder,'http:','https:') + '/thumbnailT.png' AS file"
           countQuery="MATCH (n:VFB:Class { short_form: '$ID' } )&lt;-[r:SUBCLASSOF|INSTANCEOF*..]-(i:Individual) RETURN count(i) as count"/>
       <queryChain
           xsi:type="gep_2:ProcessQuery"
@@ -193,8 +199,8 @@
           name="Find domain individuals for template id"
           description="Find domain individuals for template id"
           returnType="//@libraries.3/@types.0"
-          query="MATCH (n:Template {short_form:'$ID'})&lt;-[:Related {label:'depicts'}]-(:Template)&lt;-[r:in_register_with]-(dc:Individual)-[:Related {label:'depicts'}]->(di:Individual)-[:INSTANCEOF]->(d:Class) WHERE has(r.index) OPTIONAL MATCH (d)-[:SUBCLASSOF]->(pc:Class) RETURN distinct di.short_form as id, d.label + ' (' + di.label + ')' as name, d.description[0] as def, COLLECT(DISTINCT pc.label) as type, replace(r.iri,'http:','https:') + '/thumbnailT.png' AS file"
-          countQuery="MATCH (n:Template {short_form:'$ID'})&lt;-[:Related {label:'depicts'}]-(:Template)&lt;-[r:in_register_with]-(dc:Individual)-[:Related {label:'depicts'}]->(di:Individual)-[:INSTANCEOF]->(d:Class) WHERE has(r.index) RETURN count(di) as count"/>
+          query="MATCH (n:Template {short_form:'$ID'})&lt;-[:depicts]-(:Template)&lt;-[r:in_register_with]-(dc:Individual)-[:depicts]->(di:Individual)-[:INSTANCEOF]->(d:Class) WHERE has(r.index) RETURN distinct di.short_form as id, di.label as name, coalesce(di.description[0],d.description[0]) as def, COLLECT(DISTINCT d.label) as type, replace(r.folder,'http:','https:') + '/thumbnailT.png' AS file"
+          countQuery="MATCH (n:Template {short_form:'$ID'})&lt;-[:depicts]-(:Template)&lt;-[r:in_register_with]-(dc:Individual)-[:depicts]->(di:Individual)-[:INSTANCEOF]->(d:Class) WHERE has(r.index) RETURN count(di) as count"/>
       <queryChain
           xsi:type="gep_2:ProcessQuery"
           name="Process Images"
@@ -210,8 +216,28 @@
           id="GetClusterMembers"
           name="Get cluster members"
           description="$NAME's members"
-          query="MATCH (c:Cluster { short_form: '$ID' } )-[r2:Related {label:'has_member'}]->(i:Neuron)&lt;-[:Related { label : 'depicts' } ]-(j:Individual)-[k:in_register_with]->(m:Individual) OPTIONAL MATCH (i)-[:INSTANCEOF]->(ec:Class) RETURN i.short_form as id, CASE WHEN not i.synonym is null THEN i.label+replace(' ('+reduce(a='',n in i.synonym|a+n+', ')+')',', )',')') ELSE i.label END as name, i.description[0] as def, COLLECT(DISTINCT ec.label) as type, replace(k.iri,'http:','https:') + '/thumbnailT.png' AS file"
-          countQuery="MATCH (c:Cluster { short_form: '$ID' } )-[r2:Related {label:'has_member'}]->(i:Neuron) RETURN count(i) as count"/>
+          query="MATCH (c:Cluster { short_form: '$ID' } )-[r2:has_member]->(i:Neuron)&lt;-[:depicts]-(j:Individual)-[k:in_register_with]->(m:Individual) OPTIONAL MATCH (i)-[:INSTANCEOF]->(ec:Class) RETURN i.short_form as id, CASE WHEN not i.synonym is null THEN i.label+replace(' ('+reduce(a='',n in i.synonym|a+n+', ')+')',', )',')') ELSE i.label END as name, i.description[0] as def, COLLECT(DISTINCT ec.label) as type, replace(k.folder,'http:','https:') + '/thumbnailT.png' AS file"
+          countQuery="MATCH (c:Cluster { short_form: '$ID' } )-[r2:has_member]->(i:Neuron) RETURN count(i) as count"/>
+      <queryChain
+          xsi:type="gep_2:ProcessQuery"
+          name="Process Images"
+          returnType="//@libraries.3/@types.0"
+          queryProcessorId="vfbCreateResultListForIndividualsForQueryResultsQueryProcessor"/>
+    </queries>
+    <queries
+        xsi:type="gep_2:CompoundQuery"
+        id="imagesForDataSet"
+        name="Find images for dataset"
+        description="Images in a dataset"
+        returnType="//@libraries.3/@types.0">
+      <queryChain
+          xsi:type="gep_2:SimpleQuery"
+          id="neoImagesForDataSet"
+          name="Find images for dataset"
+          description="Find images for a dataset"
+          returnType="//@libraries.3/@types.0"
+          query="MATCH (:DataSet {short_form:'$ID'})&lt;-[:has_source]-(di:Individual)&lt;-[:depicts]-(dc:Individual)-[r:in_register_with]->(:Template) OPTIONAL MATCH (di)-[:INSTANCEOF]->(d:Class) RETURN distinct di.short_form as id, di.label as name, coalesce(di.description[0],di.description[0]) as def, COLLECT(DISTINCT d.label) as type, replace(r.folder,'http:','https:') + '/thumbnailT.png' AS file"
+          countQuery="MATCH (:DataSet {short_form:'$ID'})&lt;-[:has_source]-(di:Individual) RETURN count(di) as count"/>
       <queryChain
           xsi:type="gep_2:ProcessQuery"
           name="Process Images"
@@ -226,7 +252,7 @@
           xsi:type="gep_2:SimpleQuery"
           name="Get term info"
           description="Fetches essential details."
-          query="MATCH (n {short_form:'$ID'}) OPTIONAL MATCH (n)-[r]-(o) WITH n, r, o, startnode(r) as s WITH n, r, o, CASE when s.iri = n.iri then 'node' else 'to' end as starts WHERE (NOT type(r) = 'REFERSTO') AND (starts = 'node' OR r.label = 'depicts' OR r.label = 'is a' OR type(r) = 'INSTANCEOF') OPTIONAL MATCH (n:Class)&lt;-[r:SUBCLASSOF]-(o:Class)&lt;-[fr:INSTANCEOF]-(fo:Individual)&lt;-[:Related {label:'depicts'}]-(:Individual)-[i0:in_register_with]->(:Individual)-[:Related {label:'depicts'}]->(t0:Individual) OPTIONAL MATCH (o:Individual)&lt;-[:Related {label:'depicts'}]-(:Individual)-[i1:in_register_with]->(:Individual)-[:Related {label:'depicts'}]->(t1:Individual) OPTIONAL MATCH (o:Individual)-[i2:in_register_with]->(:Individual)-[:Related {label:'depicts'}]->(t2:Individual) OPTIONAL MATCH (o:Individual)&lt;-[i3:in_register_with]-(:Individual)-[:Related {label:'depicts'}]->(t3:Individual)-[:INSTANCEOF {label:'type'}]->(dc:Class) WHERE has(i3.index) WITH  n, r, starts, coalesce(i1,i3,i2,i0) as i, coalesce(t1,t3,t2,t0) as t, dc, o, fr, fo ORDER BY t.short_form ASC RETURN 0 as order, labels(n) as labels, n as node, COLLECT({edge:coalesce(fr,r),types:type(coalesce(fr,r)),start:starts,to:coalesce(fo,dc,o),labels:labels(coalesce(fo,o)),tempIm:i,temp:t}) as links UNION ALL MATCH (pi:Individual:Synaptic_neuropil {short_form:'$ID'})-[pr:INSTANCEOF {label:'type'}]->(n:Class) MATCH (n)-[r]->(o) WHERE NOT type(r) = 'REFERSTO' RETURN 1 as order, labels(n) as labels, n as node, COLLECT({edge:r,types:type(r),start:'node',to:o,labels:labels(o),tempIm:null,temp:null}) as links ORDER BY order ASC UNION ALL MATCH (pi:Individual:Cluster {short_form:'$ID'})-[pr:Related {label:'has_exemplar'}]->(n:Individual) MATCH (n)-[r]->(o) WHERE NOT type(r) = 'REFERSTO' RETURN 1 as order, labels(n) as labels, n as node, COLLECT({edge:r,types:type(r),start:'node',to:o,labels:labels(o),tempIm:null,temp:null}) as links ORDER BY order ASC"
+          query="MATCH (n {short_form:'$ID'}) OPTIONAL MATCH (n)-[r]-(o) WITH n, r, o, startnode(r) as s WITH n, r, o, CASE when s.iri = n.iri then 'node' else 'to' end as starts WHERE starts = 'node' OR type(r) = 'depicts' OR type(r) = 'is a' OR type(r) = 'INSTANCEOF' OR type(r) = 'has_source' OR type(r) = 'expresses' OR type(r) = 'has_license' OPTIONAL MATCH (n:Class)&lt;-[r:SUBCLASSOF]-(o:Class)&lt;-[fr:INSTANCEOF]-(fo:Individual)&lt;-[:depicts]-(:Individual)-[i0:in_register_with]->(:Individual)-[:depicts]->(t0:Individual) OPTIONAL MATCH (o:Individual)&lt;-[:depicts]-(:Individual)-[i1:in_register_with]->(:Template)-[:depicts]->(t1:Individual) WHERE NOT o:Template OPTIONAL MATCH (o:Individual)-[i2:in_register_with]->(:Template)-[:depicts]->(t2:Individual) OPTIONAL MATCH (o:Template)&lt;-[i3:in_register_with]-(:Individual)-[:depicts]->(t3:Individual)-[:INSTANCEOF {label:'type'}]->(dc:Class) WHERE has(i3.index) WITH  n, r, starts, coalesce(i1,i3,i2,i0) as i, coalesce(t1,t3,t2,t0) as t, dc, o, fr, fo ORDER BY t.short_form ASC RETURN 0 as order, labels(n) as labels, n as node, COLLECT({edge:coalesce(fr,r),types:type(coalesce(fr,r)),start:starts,to:coalesce(fo,dc,o),labels:labels(coalesce(fo,o)),tempIm:i,temp:t}) as links UNION ALL MATCH (pi:Individual:Synaptic_neuropil {short_form:'$ID'})-[pr:INSTANCEOF {label:'type'}]->(n:Class) MATCH (n)-[r]->(o) WHERE NOT type(r) = 'REFERSTO' RETURN 1 as order, labels(n) as labels, n as node, COLLECT({edge:r,types:type(r),start:'node',to:o,labels:labels(o),tempIm:null,temp:null}) as links ORDER BY order ASC UNION ALL MATCH (pi:Individual:Cluster {short_form:'$ID'})-[pr:has_exemplar]->(n:Individual) MATCH (n)-[r]->(o) WHERE NOT type(r) = 'REFERSTO' RETURN 1 as order, labels(n) as labels, n as node, COLLECT({edge:r,types:type(r),start:'node',to:o,labels:labels(o),tempIm:null,temp:null}) as links ORDER BY order ASC"
           countQuery="MATCH (n { short_form: '$ID' } ) RETURN count(n) as count"/>
       <queryChain
           xsi:type="gep_2:ProcessQuery"
@@ -239,7 +265,7 @@
       id="aberOWLDataSource"
       name="Aber OWL Data Source"
       dataSourceService="aberOWLDataSource"
-      url="http://owl.virtualflybrain.org/api/runQuery.groovy"
+      url="http://VFB_OWL_SERVER/api/runQuery.groovy"
       dependenciesLibrary="//@libraries.3"
       targetLibrary="//@libraries.4">
     <queries
@@ -423,6 +449,8 @@
       queryChain="//@dataSources.1/@queries.11 //@dataSources.1/@queries.6 //@dataSources.0/@queries.1">
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
+    <matchingCriteria
+        type="//@libraries.3/@types.1 //@libraries.3/@types.23"/>
   </queries>
   <queries xsi:type="gep_2:CompoundRefQuery"
       id="ImagesNeuronsClustered"
@@ -432,6 +460,8 @@
       queryChain="//@dataSources.1/@queries.10 //@dataSources.1/@queries.6 //@dataSources.0/@queries.1">
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
+    <matchingCriteria
+        type="//@libraries.3/@types.1 //@libraries.3/@types.23"/>
   </queries>
   <queries xsi:type="gep_2:CompoundRefQuery"
       id="neuronsparthere"
@@ -440,6 +470,8 @@
       queryChain="//@dataSources.1/@queries.2 //@dataSources.1/@queries.0 //@dataSources.0/@queries.0">
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
+    <matchingCriteria
+        type="//@libraries.3/@types.1 //@libraries.3/@types.23"/>
   </queries>
   <queries xsi:type="gep_2:CompoundRefQuery"
       id="neuronssynaptic"
@@ -448,6 +480,8 @@
       queryChain="//@dataSources.1/@queries.3 //@dataSources.1/@queries.0 //@dataSources.0/@queries.0">
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
+    <matchingCriteria
+        type="//@libraries.3/@types.1 //@libraries.3/@types.23"/>
   </queries>
   <queries xsi:type="gep_2:CompoundRefQuery"
       id="neuronspresynaptic"
@@ -456,6 +490,8 @@
       queryChain="//@dataSources.1/@queries.4 //@dataSources.1/@queries.0 //@dataSources.0/@queries.0">
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
+    <matchingCriteria
+        type="//@libraries.3/@types.1 //@libraries.3/@types.23"/>
   </queries>
   <queries xsi:type="gep_2:CompoundRefQuery"
       id="neuronspostsynaptic"
@@ -464,6 +500,8 @@
       queryChain="//@dataSources.1/@queries.5 //@dataSources.1/@queries.0 //@dataSources.0/@queries.0">
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
+    <matchingCriteria
+        type="//@libraries.3/@types.1 //@libraries.3/@types.23"/>
   </queries>
   <queries xsi:type="gep_2:CompoundRefQuery"
       id="ListClustMembers"
@@ -484,6 +522,15 @@
         type="//@libraries.3/@types.20 //@libraries.3/@types.0"/>
   </queries>
   <queries xsi:type="gep_2:CompoundRefQuery"
+      id="datasetImages"
+      name="Show all images for a dataset"
+      description="List all images included in $NAME"
+      returnType="//@libraries.3/@types.0"
+      queryChain="//@dataSources.0/@queries.6">
+    <matchingCriteria
+        type="//@libraries.3/@types.24"/>
+  </queries>
+  <queries xsi:type="gep_2:CompoundRefQuery"
       id="CompNeuronClassesInnervatingHere"
       name="Tracts/nerves innervating synaptic neuropil"
       description="Tracts/nerves innervating $NAME"
@@ -491,6 +538,8 @@
       queryChain="//@dataSources.1/@queries.8 //@dataSources.1/@queries.0 //@dataSources.0/@queries.0">
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
+    <matchingCriteria
+        type="//@libraries.3/@types.1 //@libraries.3/@types.23"/>
   </queries>
   <queries xsi:type="gep_2:CompoundRefQuery"
       id="componentsOf"
@@ -509,5 +558,7 @@
       queryChain="//@dataSources.1/@queries.13 //@dataSources.1/@queries.0 //@dataSources.0/@queries.0">
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
+    <matchingCriteria
+        type="//@libraries.3/@types.1 //@libraries.3/@types.23"/>
   </queries>
 </gep:GeppettoModel>

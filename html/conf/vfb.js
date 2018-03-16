@@ -5,3 +5,7 @@ try{var selection = parent.window.location.search;if (selection.indexOf("i=VFB")
 
 # Hiding entire footer until fixed:
 $('#footer').hide()
+
+
+#Switch to volume remdering:
+Canvas1.setWireframe(false);

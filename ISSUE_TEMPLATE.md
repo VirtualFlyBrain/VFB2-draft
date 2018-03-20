@@ -3,9 +3,9 @@
 
 
 
-This form is for VFB2 bug reports and feature requests only.
 
-This is NOT a help site. Do not ask help questions here.
+This form is for VFB2 bug reports and feature requests.
+
 If you need help, please use the [forum](https://groups.google.com/forum/#!forum/vfb-suport).
 
 Describe the bug or feature request in detail.

@@ -1,7 +1,7 @@
 FROM nginx:stable
-ENV VFB_MAIN_SERVER=larval.virtualflybrain.org
-ENV VFB_PDB_SERVER=pdb-preview.virtualflybrain.org
-ENV VFB_OWL_SERVER=owl-preview.virtualflybrain.org
+ENV VFB_MAIN_SERVER=v2.virtualflybrain.org
+ENV VFB_PDB_SERVER=pdb.virtualflybrain.org
+ENV VFB_OWL_SERVER=owl.virtualflybrain.org
 COPY html /usr/share/nginx/html
 COPY default.conf /etc/nginx/conf.d/default.conf
 RUN sed -i "s|VFB_MAIN_SERVER|${VFB_MAIN_SERVER}|g" /usr/share/nginx/html/index.html

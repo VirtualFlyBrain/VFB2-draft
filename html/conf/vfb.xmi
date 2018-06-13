@@ -126,8 +126,8 @@
           name="Get images from Neo4j for class examples"
           description="fetch Individual instances from ID list"
           runForCount="false"
-          query="MATCH (n:Class) WHERE n.short_form IN $ARRAY_ID_RESULTS OPTIONAL MATCH (n)&lt;-[:SUBCLASSOF|INSTANCEOF*..]-(i:Individual)&lt;-[:depicts]-(j:Individual)-[k:in_register_with]->(m:Individual) OPTIONAL MATCH (n)-[:SUBCLASSOF]->(c:Class) RETURN n.short_form as class_Id, COLLECT(DISTINCT c.label) as class_Type, COLLECT (DISTINCT { image_name: i.label, image_id: i.short_form, image_thumb: replace(k.folder,'http:','https:') + '/thumbnailT.png', template_id: m.short_form}) AS inds"
-          countQuery="MATCH (n:VFB:Class) WHERE n.short_form IN $ARRAY_ID_RESULTS RETURN count(n) AS count"/>
+          query="MATCH (n:Class) WHERE n.short_form IN $ARRAY_ID_RESULTS OPTIONAL MATCH (n)&lt;-[:SUBCLASSOF|INSTANCEOF*..]-(i:Individual)&lt;-[:depicts]-(j:Individual)-[k:in_register_with]->(m:Individual) OPTIONAL MATCH (n)-[:SUBCLASSOF]->(c:Class) with n.short_form as class_Id, n.label as class_Name, n.description[0] as class_Desc, COLLECT(DISTINCT c.label) as class_Type, i.label as image_name, i.short_form as image_id, replace(k.folder,'http:','https:') + '/thumbnailT.png' as image_thumb, m.short_form as template_id LIMIT 6 RETURN class_Id, class_Name, class_Desc, class_Type, COLLECT(DISTINCT {image_name: image_name, image_id: image_id, image_thumb: image_thumb, template_id: template_id})"
+          countQuery="MATCH (n:Class) WHERE n.short_form IN $ARRAY_ID_RESULTS RETURN count(n) AS count"/>
       <queryChain
           xsi:type="gep_2:ProcessQuery"
           name="Process images"
@@ -396,7 +396,6 @@
           type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
     </queries>
   </dataSources>
-
   <dataSources
       id="owleryDataSourceSubclass"
       name="owlery Data Source (subclasses)"
@@ -404,10 +403,6 @@
       url="http://VFB_OWL_SERVER/kbs/vfb/subclasses"
       dependenciesLibrary="//@libraries.3"
       targetLibrary="//@libraries.4">
-    <queries
-        xsi:type="gep_2:ProcessQuery"
-        name="Retains id, name and definition"
-        queryProcessorId="owleryDataSourceSubclassQueryProcessor"/>
     <queries
         xsi:type="gep_2:SimpleQuery"
         name="Part of"
@@ -510,7 +505,6 @@
           type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
     </queries>
   </dataSources>
-
   <dataSources
       id="owleryDataSourceRealise"
       name="owlery Data Source (instances)"
@@ -545,7 +539,6 @@
           type="//@libraries.3/@types.5 //@libraries.3/@types.1"/>
     </queries>
   </dataSources>
-
   <queries xsi:type="gep_2:CompoundRefQuery"
       id="FindFellowClustMembers"
       name="Fellow Cluster Members"
@@ -569,7 +562,7 @@
       name="Subclasses of"
       description="Subclasses of $NAME"
       returnType="//@libraries.3/@types.1"
-      queryChain="//@dataSources.1/@queries.9 //@dataSources.1/@queries.0 //@dataSources.0/@queries.0">
+      queryChain="//@dataSources.2/@queries.8 //@dataSources.1/@queries.0 //@dataSources.0/@queries.0">
     <matchingCriteria
         type="//@libraries.3/@types.1"/>
   </queries>

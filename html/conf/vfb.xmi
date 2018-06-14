@@ -453,7 +453,7 @@
         id="owlPassIdListOnly"
         name="Pass id list only"
         description="Keep nothing slimply pass ids"
-        queryProcessorId="vfbAberOWLidOnlyQueryProcessor"/>
+        queryProcessorId="owleryIdOnlyQueryProcessor"/>
     <queries
         xsi:type="gep_2:SimpleQuery"
         id="AberNeuronClassesFasciculatingHere"

@@ -279,7 +279,7 @@
         xsi:type="gep_2:SimpleQuery"
         name="Owlery Part of"
         description="Part of $NAME"
-        query="object=%3Chttp://purl.obolibrary.org/obo/BFO_0000050%3E%20some%20%3Chttp://purl.obolibrary.org/obo/$ID%3E&amp;direct=false&amp;includeDeprecated=false&amp;includeEquivalent=true&amp;includeNothing=false"
+        query="object=%3Chttp://purl.obolibrary.org/obo/BFO_0000050%3E%20some%20%3Chttp://purl.obolibrary.org/obo/$ID%3E&amp;direct=false&amp;includeDeprecated=false&amp;includeEquivalent=true"
         countQuery="">
       <matchingCriteria
           type="//@libraries.3/@types.1"/>
@@ -288,7 +288,7 @@
         xsi:type="gep_2:SimpleQuery"
         name="Owlery Neuron class with part here"
         description="Neurons with some part here"
-        query="object=%3Chttp://purl.obolibrary.org/obo/FBbt_00005106%3E%20and%20%3Chttp://purl.obolibrary.org/obo/RO_0002131%3E%20some%20%3Chttp://purl.obolibrary.org/obo/$ID%3E&amp;direct=false&amp;includeDeprecated=false&amp;includeEquivalent=true&amp;includeNothing=false"
+        query="object=%3Chttp://purl.obolibrary.org/obo/FBbt_00005106%3E%20and%20%3Chttp://purl.obolibrary.org/obo/RO_0002131%3E%20some%20%3Chttp://purl.obolibrary.org/obo/$ID%3E&amp;direct=false&amp;includeDeprecated=false&amp;includeEquivalent=true"
         countQuery="">
       <matchingCriteria
           type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
@@ -297,7 +297,7 @@
         xsi:type="gep_2:SimpleQuery"
         name="Owlery Neurons Synaptic"
         description="Neurons with synaptic terminals here"
-        query="object=%3Chttp://purl.obolibrary.org/obo/FBbt_00005106%3E%20and%20%3Chttp://purl.obolibrary.org/obo/RO_0002130%3E%20some%20%3Chttp://purl.obolibrary.org/obo/$ID%3E&amp;direct=false&amp;includeDeprecated=false&amp;includeEquivalent=true&amp;includeNothing=false"
+        query="object=%3Chttp://purl.obolibrary.org/obo/FBbt_00005106%3E%20and%20%3Chttp://purl.obolibrary.org/obo/RO_0002130%3E%20some%20%3Chttp://purl.obolibrary.org/obo/$ID%3E&amp;direct=false&amp;includeDeprecated=false&amp;includeEquivalent=true"
         countQuery="">
       <matchingCriteria
           type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
@@ -306,7 +306,7 @@
         xsi:type="gep_2:SimpleQuery"
         name="Owlery Neurons Presynaptic"
         description="Neurons with presynaptic terminals here"
-        query="object=%3Chttp://purl.obolibrary.org/obo/FBbt_00005106%3E%20and%20%3Chttp://purl.obolibrary.org/obo/RO_0002113%3E%20some%20%3Chttp://purl.obolibrary.org/obo/$ID%3E&amp;direct=false&amp;includeDeprecated=false&amp;includeEquivalent=true&amp;includeNothing=false"
+        query="object=%3Chttp://purl.obolibrary.org/obo/FBbt_00005106%3E%20and%20%3Chttp://purl.obolibrary.org/obo/RO_0002113%3E%20some%20%3Chttp://purl.obolibrary.org/obo/$ID%3E&amp;direct=false&amp;includeDeprecated=false&amp;includeEquivalent=true"
         countQuery="">
       <matchingCriteria
           type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
@@ -315,7 +315,7 @@
         xsi:type="gep_2:SimpleQuery"
         name="Owlery Neurons Postsynaptic"
         description="Neurons with postsynaptic terminals here"
-        query="object=%3Chttp://purl.obolibrary.org/obo/FBbt_00005106%3E%20and%20%3Chttp://purl.obolibrary.org/obo/RO_0002110%3E%20some%20%3Chttp://purl.obolibrary.org/obo/$ID%3E&amp;direct=false&amp;includeDeprecated=false&amp;includeEquivalent=true&amp;includeNothing=false"
+        query="object=%3Chttp://purl.obolibrary.org/obo/FBbt_00005106%3E%20and%20%3Chttp://purl.obolibrary.org/obo/RO_0002110%3E%20some%20%3Chttp://purl.obolibrary.org/obo/$ID%3E&amp;direct=false&amp;includeDeprecated=false&amp;includeEquivalent=true"
         countQuery="">
       <matchingCriteria
           type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
@@ -332,7 +332,7 @@
         name="Owlery Neuron classes fasciculating here"
         description="Neuron classes fasciculating here"
         returnType="//@libraries.3/@types.1"
-        query="object=%3Chttp://purl.obolibrary.org/obo/FBbt_00005106%3E%20and%20%3Chttp://purl.obolibrary.org/obo/RO_0002101%3E%20some%20%3Chttp://purl.obolibrary.org/obo/$ID%3E&amp;direct=false&amp;includeDeprecated=false&amp;includeEquivalent=true&amp;includeNothing=false"
+        query="object=%3Chttp://purl.obolibrary.org/obo/FBbt_00005106%3E%20and%20%3Chttp://purl.obolibrary.org/obo/RO_0002101%3E%20some%20%3Chttp://purl.obolibrary.org/obo/$ID%3E&amp;direct=false&amp;includeDeprecated=false&amp;includeEquivalent=true"
         countQuery="">
       <matchingCriteria
           type="//@libraries.3/@types.3 //@libraries.3/@types.1"/>
@@ -343,7 +343,7 @@
         name="Owlery tracts in"
         description="tracts in"
         returnType="//@libraries.3/@types.1"
-        query="object=%3Chttp://purl.obolibrary.org/obo/FBbt_00005099%3E%20and%20%3Chttp://purl.obolibrary.org/obo/RO_0002134%3E%20some%20%3Chttp://purl.obolibrary.org/obo/$ID%3E&amp;direct=false&amp;includeDeprecated=false&amp;includeEquivalent=true&amp;includeNothing=false"
+        query="object=%3Chttp://purl.obolibrary.org/obo/FBbt_00005099%3E%20and%20%3Chttp://purl.obolibrary.org/obo/RO_0002134%3E%20some%20%3Chttp://purl.obolibrary.org/obo/$ID%3E&amp;direct=false&amp;includeDeprecated=false&amp;includeEquivalent=true"
         countQuery="">
       <matchingCriteria
           type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
@@ -354,7 +354,7 @@
         name="Owlery Subclasses of"
         description="Subclasses of $NAME"
         returnType="//@libraries.3/@types.1"
-        query="object=%3Chttp://purl.obolibrary.org/obo/$ID%3E&amp;direct=false&amp;includeDeprecated=false&amp;includeEquivalent=true&amp;includeNothing=false"
+        query="object=%3Chttp://purl.obolibrary.org/obo/$ID%3E&amp;direct=false&amp;includeDeprecated=false&amp;includeEquivalent=true"
         countQuery="">
       <matchingCriteria
           type="//@libraries.3/@types.1"/>
@@ -371,7 +371,7 @@
         id="lineageClones"
         name="Owlery Lineage Clones"
         description="Lineage clones found in"
-        query="object=%3Chttp://purl.obolibrary.org/obo/FBbt_00007683%3E%20and%20%3Chttp://purl.obolibrary.org/obo/RO_0002131%3E%20some%20%3Chttp://purl.obolibrary.org/obo/$ID%3E&amp;direct=false&amp;includeDeprecated=false&amp;includeEquivalent=true&amp;includeNothing=false"
+        query="object=%3Chttp://purl.obolibrary.org/obo/FBbt_00007683%3E%20and%20%3Chttp://purl.obolibrary.org/obo/RO_0002131%3E%20some%20%3Chttp://purl.obolibrary.org/obo/$ID%3E&amp;direct=false&amp;includeDeprecated=false&amp;includeEquivalent=true"
         countQuery="">
       <matchingCriteria
           type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>

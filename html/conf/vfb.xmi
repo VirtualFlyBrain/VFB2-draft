@@ -389,7 +389,7 @@
         id="ImagesOfNeuronsWithSomePartHereClustered"
         name="Owlery Images of neurons with some part here (clustered)"
         description="Images of neurons with some part here (clustered)"
-        returnType="//@libraries.3/@types.2"
+        returnType="//@libraries.3/@types.22"
         query="object=%3Chttp://purl.obolibrary.org/obo/C888C3DB-AEFA-447F-BD4C-858DFE33DBE7%3E%20some%20(%3Chttp://purl.obolibrary.org/obo/FBbt_00005106%3E%20and%20%3Chttp://purl.obolibrary.org/obo/RO_0002131%3E%20some%20%3Chttp://purl.obolibrary.org/obo/$ID%3E)&amp;direct=false&amp;includeDeprecated=false"
         countQuery="">
       <matchingCriteria
@@ -406,6 +406,12 @@
       <matchingCriteria
           type="//@libraries.3/@types.5 //@libraries.3/@types.1"/>
     </queries>
+    <queries
+        xsi:type="gep_2:ProcessQuery"
+        id="owlPassIdListOnlyInstances"
+        name="Owlery Pass id list only Instances"
+        description="Keep nothing slimply pass ids"
+        queryProcessorId="owleryIdOnlyQueryProcessor"/>
   </dataSources>
   <queries xsi:type="gep_2:CompoundRefQuery"
       id="FindFellowClustMembers"
@@ -457,7 +463,7 @@
       name="Images of neurons with some part here"
       description="Images of neurons with some part in $NAME"
       returnType="//@libraries.3/@types.2"
-      queryChain="//@dataSources.3/@queries.1 //@dataSources.2/@queries.5 //@dataSources.0/@queries.1">
+      queryChain="//@dataSources.3/@queries.1 //@dataSources.3/@queries.2 //@dataSources.0/@queries.1">
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
     <matchingCriteria
@@ -467,7 +473,7 @@
       id="ImagesNeuronsClustered"
       name="Images of neurons with some part here (clustered)"
       description="Images of neurons with some part in $NAME (clustered)"
-      returnType="//@libraries.3/@types.2"
+      returnType="//@libraries.3/@types.22"
       queryChain="//@dataSources.3/@queries.0 //@dataSources.2/@queries.5 //@dataSources.0/@queries.1">
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>

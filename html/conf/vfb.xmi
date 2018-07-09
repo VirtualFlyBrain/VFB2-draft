@@ -93,6 +93,9 @@
     <types xsi:type="gep_1:SimpleType"
         id="DataSet"
         name="DataSet"/>
+    <types xsi:type="gep_1:SimpleType"
+        id="NBLAST"
+        name="NBLAST"/>
   </libraries>
   <libraries
       id="vfbLibrary"
@@ -413,6 +416,30 @@
         description="Keep nothing slimply pass ids"
         queryProcessorId="owleryIdOnlyQueryProcessor"/>
   </dataSources>
+  <dataSources
+      id="opencpuDataSource"
+      name="NBLAST Data Source"
+      dataSourceService="opencpuDataSource"
+      url="http://r.virtualflybrain.org/ocpu/library/vfbr/R/vfb_nblast/json"
+      dependenciesLibrary="//@libraries.3"
+      targetLibrary="//@libraries.4">
+    <queries
+        xsi:type="gep_2:SimpleQuery"
+        id="nblastSimilarTo"
+        name="NBLAST similar to"
+        description="Similar to $NAME"
+        query="$ID"
+        countQuery="">
+      <matchingCriteria
+          type="//@libraries.3/@types.0 //@libraries.3/@types.2"/>
+    </queries>
+    <queries
+        xsi:type="gep_2:ProcessQuery"
+        id="nblastPassIdAndScores"
+        name="NBLAST pass ids and scores"
+        description="Keep nothing slimply pass ids and scores"
+        queryProcessorId="nblastQueryProcessor"/>
+  </dataSources>
   <queries xsi:type="gep_2:CompoundRefQuery"
       id="FindFellowClustMembers"
       name="Fellow Cluster Members"
@@ -577,5 +604,14 @@
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.23"/>
+  </queries>
+  <queries xsi:type="gep_2:CompoundRefQuery"
+      id="similarto"
+      name="NBLAST Similar to"
+      description="NBLAST Similar to $NAME"
+      returnType="//@libraries.3/@types.1"
+      queryChain="//@dataSources.4/@queries.0 //@dataSources.4/@queries.1 //@dataSources.0/@queries.1">
+    <matchingCriteria
+        type="//@libraries.3/@types.0 //@libraries.3/@types.2"/>
   </queries>
 </gep:GeppettoModel>

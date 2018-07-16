@@ -445,7 +445,7 @@
         id="nblastSimilarTo"
         name="NBLAST "
         description="Similar to $NAME"
-        query="$ID"
+        query="'query'='$ID'&'normalisation'='mean'"
         countQuery="">
       <matchingCriteria
           type="//@libraries.3/@types.0 //@libraries.3/@types.2 //@libraries.3/@types.25"/>

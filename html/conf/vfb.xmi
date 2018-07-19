@@ -428,7 +428,7 @@
         id="nblastSimilarTo"
         name="NBLAST similar to"
         description="Similar to $NAME"
-        query="$ID"
+        query="&quot;QUERY&quot;:&quot;$ID&quot;,&quot;target&quot;:&quot;FlyCircuit&quot;,&quot;n&quot;:100,&quot;vfb_ids&quot;:true"
         countQuery="">
       <matchingCriteria
           type="//@libraries.3/@types.0 //@libraries.3/@types.2 //@libraries.3/@types.25"/>

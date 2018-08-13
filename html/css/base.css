@@ -251,3 +251,7 @@ body {
 #querybuilder .griddle table{
     table-layout: auto important;
 }
+
+#query-results-container .griddle-body div{
+    background-color:rgba(65, 58, 58, 0.3);
+}

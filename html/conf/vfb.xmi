@@ -441,15 +441,6 @@
         queryProcessorId="nblastQueryProcessor"/>
   </dataSources>
   <queries xsi:type="gep_2:CompoundRefQuery"
-      id="FindFellowClustMembers"
-      name="Fellow Cluster Members"
-      description="Similar neurons to $NAME"
-      returnType="//@libraries.3/@types.2"
-      queryChain="//@dataSources.0/@queries.2">
-    <matchingCriteria
-        type="//@libraries.3/@types.0 //@libraries.3/@types.2"/>
-  </queries>
-  <queries xsi:type="gep_2:CompoundRefQuery"
       id="ListAllExamples"
       name="List all example images for class with examples"
       description="List all example images of $NAME"

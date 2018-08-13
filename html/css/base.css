@@ -252,6 +252,6 @@ body {
     table-layout: auto important;
 }
 
-#query-results-container .griddle-body div{
+#query-results-container > div.tabs > article > div > div.griddle > div.griddle-container{
     background-color:rgba(65, 58, 58, 0.3);
 }

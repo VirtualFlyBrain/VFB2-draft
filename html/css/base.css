@@ -247,3 +247,7 @@ body {
 .vfb-overlay-label p {
     font-size: 15px;
 }
+
+#querybuilder .griddle table{
+    table-layout: auto important;
+}

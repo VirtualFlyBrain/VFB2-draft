@@ -147,7 +147,7 @@
           name="Get meta from Neo4j"
           description="Get images for individual list"
           runForCount="false"
-          query="MATCH (i:Individual) WHERE i.short_form IN $ARRAY_ID_RESULTS OPTIONAL MATCH (i)&lt;-[:depicts]-(:Individual)-[k1:in_register_with]->(:Individual) OPTIONAL MATCH (i:Cluster)&lt;-[:exemplar_of]-(e:Individual) OPTIONAL MATCH (i)-[:INSTANCEOF]->(ic:Class) OPTIONAL MATCH (e)-[:INSTANCEOF]->(ec:Class) with coalesce('Exemplar: ' + ec.label,ic.label) as ct, i, coalesce(replace(k1.folder,'http:','https:') + '/thumbnailT.png','http://flybrain.mrc-lmb.cam.ac.uk/vfb/fc/clusterv/3/' + e.label + '/snapshot.png') as iri, i.description[0] as cd RETURN i.short_form as id, CASE WHEN not i.synonym is null THEN i.label+replace(' ('+reduce(a='',n in i.synonym|a+n+', ')+')',', )',')') ELSE i.label END as name, cd as def, COLLECT(DISTINCT ct) as type, iri AS file"
+          query="MATCH (i:Individual) WHERE i.short_form IN $ARRAY_ID_RESULTS OPTIONAL MATCH (i)&lt;-[:depicts]-(:Individual)-[k1:in_register_with]->(:Individual) OPTIONAL MATCH (i:Cluster)&lt;-[:exemplar_of]-(e:Individual) OPTIONAL MATCH (i)-[:INSTANCEOF]->(ic:Class) OPTIONAL MATCH (e)-[:INSTANCEOF]->(ec:Class) with coalesce('Exemplar: ' + ec.label,ic.label) as ct, i, coalesce(replace(k1.folder,'http:','https:') + '/thumbnailT.png','http://flybrain.mrc-lmb.cam.ac.uk/vfb/fc/clusterv/3/' + e.label + '/snapshot.png') as iri, i.description[0] as cd, FILTER(x IN i.synonym WHERE x &lt;> i.label) as syn RETURN i.short_form as id, i.label  as name, CASE WHEN not syn = [] THEN cd + replace(' Synonym(s): '+reduce(a='',n in syn|a+n+', ')+')',', )','.') ELSE cd END as def, COLLECT(DISTINCT ct) as type, iri AS file"
           countQuery="MATCH(i:Individual) WHERE i.short_form IN $ARRAY_ID_RESULTS RETURN count(i) as count"/>
       <queryChain
           xsi:type="gep_2:ProcessQuery"
@@ -434,6 +434,17 @@
           type="//@libraries.3/@types.0 //@libraries.3/@types.2"/>
     </queries>
     <queries
+        xsi:type="gep_2:SimpleQuery"
+        id="nblastGal4To"
+        name="NBLAST Transgene for"
+        description="NBLAST for potential GAL4 patterns targetting $NAME"
+        returnType="//@libraries.3/@types.0"
+        query="&quot;query&quot;:&quot;$ID&quot;,&quot;target&quot;:&quot;GMR-Gal4&quot;,&quot;n&quot;:25,&quot;vfb_ids&quot;:true"
+        countQuery="">
+      <matchingCriteria
+          type="//@libraries.3/@types.0 //@libraries.3/@types.2 //@libraries.3/@types.25"/>
+    </queries>
+    <queries
         xsi:type="gep_2:ProcessQuery"
         id="nblastPassIdAndScores"
         name="NBLAST pass ids and scores"
@@ -601,7 +612,16 @@
       name="NBLAST Similar to"
       description="NBLAST Similar to $NAME"
       returnType="//@libraries.3/@types.2"
-      queryChain="//@dataSources.4/@queries.0 //@dataSources.4/@queries.1 //@dataSources.0/@queries.1">
+      queryChain="//@dataSources.4/@queries.0 //@dataSources.4/@queries.2 //@dataSources.0/@queries.1">
+    <matchingCriteria
+        type="//@libraries.3/@types.0 //@libraries.3/@types.2 //@libraries.3/@types.25"/>
+  </queries>
+  <queries xsi:type="gep_2:CompoundRefQuery"
+      id="targeting"
+      name="NBLAST GAL4 tragetting"
+      description="NBLAST potential GAL4's targetting $NAME"
+      returnType="//@libraries.3/@types.0"
+      queryChain="//@dataSources.4/@queries.1 //@dataSources.4/@queries.2 //@dataSources.0/@queries.1">
     <matchingCriteria
         type="//@libraries.3/@types.0 //@libraries.3/@types.2 //@libraries.3/@types.25"/>
   </queries>

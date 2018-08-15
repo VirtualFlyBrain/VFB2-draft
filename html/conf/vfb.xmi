@@ -621,7 +621,7 @@
       name="NBLAST GAL4 tragetting"
       description="NBLAST potential GAL4's targetting $NAME"
       returnType="//@libraries.3/@types.0"
-      queryChain="//@queries.17 //@dataSources.4/@queries.1 //@dataSources.0/@queries.1">
+      queryChain="//@dataSources.4/@queries.2 //@dataSources.4/@queries.1 //@dataSources.0/@queries.1">
     <matchingCriteria
         type="//@libraries.3/@types.0 //@libraries.3/@types.2 //@libraries.3/@types.25"/>
   </queries>

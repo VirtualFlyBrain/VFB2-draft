@@ -247,6 +247,26 @@
           returnType="//@libraries.3/@types.0"
           queryProcessorId="vfbCreateResultListForIndividualsForQueryResultsQueryProcessor"/>
     </queries>
+    <queries
+        xsi:type="gep_2:CompoundQuery"
+        id="imagesForTempId"
+        name="Find images aligned to a template"
+        description="Aligned images for template"
+        returnType="//@libraries.3/@types.0">
+      <queryChain
+          xsi:type="gep_2:SimpleQuery"
+          id="imagesForTempQuery"
+          name="Find images aligned to template id"
+          description="Find images aligned to template id"
+          returnType="//@libraries.3/@types.0"
+          query="MATCH (n:Template {short_form:'$ID'})&lt;-[:depicts]-(:Template)&lt;-[r:in_register_with]-(dc:Individual)-[:depicts]->(di:Individual) OPTIONAL MATCH (di)-[:INSTANCEOF]->(d:Class) RETURN distinct di.short_form as id, di.label as name, coalesce(di.description[0],d.description[0]) as def, COLLECT(DISTINCT d.label) as type, replace(r.folder,'http:','https:') + '/thumbnailT.png' AS file"
+          countQuery="MATCH (n:Template {short_form:'$ID'})&lt;-[:depicts]-(:Template)&lt;-[r:in_register_with]-(dc:Individual)-[:depicts]->(di:Individual) RETURN count(di) as count"/>
+      <queryChain
+          xsi:type="gep_2:ProcessQuery"
+          name="Process Images"
+          returnType="//@libraries.3/@types.0"
+          queryProcessorId="vfbCreateResultListForIndividualsForQueryResultsQueryProcessor"/>
+    </queries>
     <fetchVariableQuery
         xsi:type="gep_2:CompoundQuery"
         name="The compound query for augmenting a type"
@@ -624,5 +644,14 @@
       queryChain="//@dataSources.4/@queries.1 //@dataSources.4/@queries.2 //@dataSources.0/@queries.1">
     <matchingCriteria
         type="//@libraries.3/@types.0 //@libraries.3/@types.2 //@libraries.3/@types.25"/>
+  </queries>
+  <queries xsi:type="gep_2:CompoundRefQuery"
+      id="alignedImages"
+      name="Show all images aligned to template"
+      description="List all images aligned to $NAME"
+      returnType="//@libraries.3/@types.0"
+      queryChain="//@dataSources.0/@queries.7">
+    <matchingCriteria
+        type="//@libraries.3/@types.20 //@libraries.3/@types.0"/>
   </queries>
 </gep:GeppettoModel>

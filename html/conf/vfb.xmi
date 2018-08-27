@@ -98,10 +98,10 @@
         name="NBLAST"/>
     <types xsi:type="gep_1:SimpleType"
         id="Neuromere"
-        name="neuromere"/>
+        name="Neuromere"/>
     <types xsi:type="gep_1:SimpleType"
         id="Expression_pattern"
-        name="expression pattern"/>
+        name="Expression pattern"/>
   </libraries>
   <libraries
       id="vfbLibrary"

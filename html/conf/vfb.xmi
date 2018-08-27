@@ -88,8 +88,8 @@
         id="Cluster"
         name="Cluster"/>
     <types xsi:type="gep_1:SimpleType"
-        id="ganglion"
-        name="Ganglion"/>
+        id="Ganglion"
+        name="ganglion"/>
     <types xsi:type="gep_1:SimpleType"
         id="DataSet"
         name="DataSet"/>
@@ -98,10 +98,10 @@
         name="NBLAST"/>
     <types xsi:type="gep_1:SimpleType"
         id="Neuromere"
-        name="Neuromere"/>
+        name="neuromere"/>
     <types xsi:type="gep_1:SimpleType"
         id="Expression_pattern"
-        name="Expression pattern"/>
+        name="expression pattern"/>
   </libraries>
   <libraries
       id="vfbLibrary"
@@ -559,7 +559,11 @@
   <queries xsi:type="gep_2:CompoundRefQuery"
       id="epFrag"
       name="Images of expression pattern fragments"
-      description="Images of fragments of $NAME"/>
+      description="Images of fragments of $NAME"
+      queryChain="//@dataSources.3/@queries.2 //@dataSources.3/@queries.3 //@dataSources.0/@queries.1">
+    <matchingCriteria
+        type="//@libraries.3/@types.1 //@libraries.3/@types.27"/>
+  </queries>
   <queries xsi:type="gep_2:CompoundRefQuery"
       id="neuronssynaptic"
       name="Neurons Synaptic"

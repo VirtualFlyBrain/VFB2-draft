@@ -96,6 +96,9 @@
     <types xsi:type="gep_1:SimpleType"
         id="NBLAST"
         name="NBLAST"/>
+    <types xsi:type="gep_1:SimpleType"
+        id="Neuromere"
+        name="neuromere"/>
   </libraries>
   <libraries
       id="vfbLibrary"
@@ -537,6 +540,8 @@
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
     <matchingCriteria
+        type="//@libraries.3/@types.1 //@libraries.3/@types.26"/>
+    <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.23"/>
   </queries>
   <queries xsi:type="gep_2:CompoundRefQuery"
@@ -546,6 +551,8 @@
       queryChain="//@dataSources.2/@queries.2 //@dataSources.2/@queries.5 //@dataSources.0/@queries.0">
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
+    <matchingCriteria
+        type="//@libraries.3/@types.1 //@libraries.3/@types.26"/>
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.23"/>
   </queries>
@@ -557,6 +564,8 @@
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
     <matchingCriteria
+        type="//@libraries.3/@types.1 //@libraries.3/@types.26"/>
+    <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.23"/>
   </queries>
   <queries xsi:type="gep_2:CompoundRefQuery"
@@ -566,6 +575,8 @@
       queryChain="//@dataSources.2/@queries.4 //@dataSources.2/@queries.5 //@dataSources.0/@queries.0">
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.5"/>
+    <matchingCriteria
+        type="//@libraries.3/@types.1 //@libraries.3/@types.26"/>
     <matchingCriteria
         type="//@libraries.3/@types.1 //@libraries.3/@types.23"/>
   </queries>

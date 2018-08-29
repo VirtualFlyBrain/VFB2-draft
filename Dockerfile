@@ -1,5 +1,5 @@
 FROM nginx:stable
-ENV VFB_MAIN_SERVER=localhost:8080
+ENV VFB_MAIN_SERVER=localhost
 ENV VFB_PDB_SERVER=localhost:7474
 ENV VFB_OWL_SERVER=localhost:8081
 COPY html /usr/share/nginx/html

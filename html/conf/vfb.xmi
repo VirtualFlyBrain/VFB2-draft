@@ -441,7 +441,7 @@
         name="Owlery individual parts"
         description="Find individuals that are part of some X (useful for finding expression pattern parts)."
         returnType="//@libraries.3/@types.0"
-        query="object=%3Chttp://purl.obolibrary.org/obo/BFO_0000050%3E%20some%20%3Chttp://purl.obolibrary.org/obo/$ID%3E&amp;direct=false&amp;includeDeprecated=false"
+        query="object=%3Chttp://purl.obolibrary.org/obo/BFO_0000050%3E%20some%20%3Chttp://virtualflybrain.org/reports/$ID%3E&amp;direct=false&amp;includeDeprecated=false"
         countQuery=""/>
     <queries
         xsi:type="gep_2:ProcessQuery"

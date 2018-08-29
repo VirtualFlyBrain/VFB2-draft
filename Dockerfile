@@ -1,7 +1,7 @@
 FROM nginx:stable
-ENV VFB_MAIN_SERVER=localhost
-ENV VFB_PDB_SERVER=localhost:7474
-ENV VFB_OWL_SERVER=localhost:8081
+ENV VFB_MAIN_SERVER=vfb:80
+ENV VFB_PDB_SERVER=pdb:7474
+ENV VFB_OWL_SERVER=owl:8080
 COPY html /usr/share/nginx/html
 COPY default.conf /etc/nginx/conf.d/default.conf
 RUN sed -i "s|VFB_MAIN_SERVER|${VFB_MAIN_SERVER}|g" /usr/share/nginx/html/index.html

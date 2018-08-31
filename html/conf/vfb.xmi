@@ -265,8 +265,8 @@
           name="Find images aligned to template id"
           description="Find images aligned to template id"
           returnType="//@libraries.3/@types.0"
-          query="MATCH (n:Template {short_form:'$ID'})&lt;-[:depicts]-(:Template)&lt;-[r:in_register_with]-(dc:Individual)-[:depicts]->(di:Individual) OPTIONAL MATCH (di)-[:INSTANCEOF]->(d:Class) RETURN distinct di.short_form as id, di.label as name, coalesce(di.description[0],d.description[0]) as def, COLLECT(DISTINCT d.label) as type, replace(r.folder,'http:','https:') + '/thumbnailT.png' AS file"
-          countQuery="MATCH (n:Template {short_form:'$ID'})&lt;-[:depicts]-(:Template)&lt;-[r:in_register_with]-(dc:Individual)-[:depicts]->(di:Individual) RETURN count(di) as count"/>
+          query="MATCH (n:Template {short_form:'$ID'})&lt;-[:depicts]-(:Template)&lt;-[r:in_register_with]-(dc:Individual)-[:depicts]->(di:Individual) WHERE not has(r.index) OPTIONAL MATCH (di)-[:INSTANCEOF]->(d:Class) RETURN distinct di.short_form as id, di.label as name, coalesce(di.description[0],d.description[0]) as def, COLLECT(DISTINCT d.label) as type, replace(r.folder,'http:','https:') + '/thumbnailT.png' AS file"
+          countQuery="MATCH (n:Template {short_form:'$ID'})&lt;-[:depicts]-(:Template)&lt;-[r:in_register_with]-(dc:Individual)-[:depicts]->(di:Individual) WHERE not has(r.index) RETURN count(di) as count"/>
       <queryChain
           xsi:type="gep_2:ProcessQuery"
           name="Process Images"

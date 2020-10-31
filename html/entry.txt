@@ -7,3 +7,4 @@ https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id=VFB_00101384&i=
 https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id=VFB_00030786&i=VFB_00030786
 https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id=VFB_00050000&i=VFB_00050000
 https://v2.virtualflybrain.org/org.geppetto.frontend/geppetto?id=VFB_00049000&i=VFB_00049000
+https://v2.virtualflybrain.org/org.geppetto.frontend/org.geppetto.frontend?q=VFB_00101567,AllDatasets

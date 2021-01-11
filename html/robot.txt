@@ -1,2 +1,4 @@
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /data/VFB/
+Disallow: /site/vfb_site/

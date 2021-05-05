@@ -1,7 +1,7 @@
 FROM nginx:stable
-ENV VFB_MAIN_SERVER=v2-dev.virtualflybrain.org
-ENV VFB_PDB_SERVER=pdb-dev.virtualflybrain.org
-ENV VFB_OWL_SERVER=owl-dev.virtualflybrain.org
+ENV VFB_MAIN_SERVER=v2.virtualflybrain.org
+ENV VFB_PDB_SERVER=pdb.virtualflybrain.org
+ENV VFB_OWL_SERVER=owl.virtualflybrain.org
 COPY html /usr/share/nginx/html
 RUN chmod -R 777 /usr/share/nginx/html
 COPY default.conf /etc/nginx/conf.d/default.conf
